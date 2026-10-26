@@ -190,14 +190,17 @@
       will-change: transform;
     }
 
-    /* Footnote Superscripts */
+    /* Footnote Superscripts - Zero height to preserve paragraph rhythm */
     .fn-ref {
       font-family: 'Inter', system-ui, sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.68em;
+      line-height: 0;
+      vertical-align: baseline;
+      position: relative;
+      top: -0.45em;
       font-weight: 700;
       color: #9e3521;
-      vertical-align: super;
-      padding: 0 2px;
+      padding: 0 1px;
       text-decoration: none;
     }
     .fn-ref:hover {
@@ -281,15 +284,15 @@
 
       <!-- ACT I -->
       <section class="space-y-5 sm:space-y-6">
-        <div class="pt-8 pb-1 border-b border-parchment-300">
-          <div class="flex items-center gap-2 mb-1.5">
-            <span class="h-px w-5 bg-vermilion"></span>
-            <span class="font-header text-xs tracking-widest text-vermilion font-bold uppercase">Act I</span>
-          </div>
-          <h2 class="font-sans text-xs sm:text-sm font-semibold tracking-wider text-ink-muted uppercase leading-snug">
-            The Western Approach
-          </h2>
+      <div class="pt-10 pb-3 mb-6 border-b border-parchment-300">
+        <div class="flex items-center gap-2.5 mb-1.5">
+          <span class="h-0.5 w-6 bg-vermilion"></span>
+          <span class="font-header text-xs sm:text-sm tracking-[0.2em] text-vermilion font-bold uppercase">Act I</span>
         </div>
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink leading-tight">
+          The Western Approach
+        </h2>
+      </div>
 
         <p class="drop-cap">
           His name was Alexander Semple, though along the border valleys of Monmouthshire no one called him that. To the farm wives of Wentloog, the hostlers at the coaching gates, and the magistrates sitting in petty sessions, he was simply 
@@ -365,17 +368,31 @@
         </div>
       </figure>
 
+      <!-- Editorial Fleuron Break -->
+      <div class="pt-16 pb-12 relative flex items-center justify-center" aria-hidden="true">
+        <!-- Single continuous hairline -->
+        <div class="w-full max-w-[280px] sm:max-w-[360px] h-px bg-gradient-to-r from-transparent via-parchment-400 to-transparent"></div>
+        
+        <!-- Dead-centre ornament with true geometry center -->
+        <div class="absolute bg-[#fcfaf6] px-3 flex items-center justify-center">
+          <svg class="w-3.5 h-3.5 block text-antiqueGold" viewBox="0 -3 24 24" fill="currentColor">
+            <path d="M12 2C11.5 4 10 6 8 7C6 8 4 8.5 2 9C4 9.5 6 10 8 11C10 12 11.5 14 12 16C12.5 14 14 12 16 11C18 10 20 9.5 22 9C20 8.5 18 8 16 7C14 6 12.5 4 12 2Z"/>
+            <circle cx="12" cy="9" r="1.5" class="text-vermilion" fill="currentColor"/>
+          </svg>
+        </div>
+      </div>
+
       <!-- ACT II -->
       <section class="space-y-5 sm:space-y-6">
-        <div class="pt-8 pb-1 border-b border-parchment-300">
-          <div class="flex items-center gap-2 mb-1.5">
-            <span class="h-px w-5 bg-vermilion"></span>
-            <span class="font-header text-xs tracking-widest text-vermilion font-bold uppercase">Act II</span>
-          </div>
-          <h2 class="font-sans text-xs sm:text-sm font-semibold tracking-wider text-ink-muted uppercase leading-snug">
-            Over the Ridge to Stow Hill
-          </h2>
+      <div class="pb-3 mb-6 border-b border-parchment-300">
+        <div class="flex items-center gap-2.5 mb-1.5">
+          <span class="h-0.5 w-6 bg-vermilion"></span>
+          <span class="font-header text-xs sm:text-sm tracking-[0.2em] text-vermilion font-bold uppercase">Act II</span>
         </div>
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink leading-tight">
+          Over the Ridge to Stow Hill
+        </h2>
+      </div>
 
         <p>
           Emerging from the wooded hollows of the parish road, Semple felt the slope stiffen as the track skirted along the southern edge of the ancient earthen ring of <span class="fact-tag">Tredegar Hill Fort</span>, passing the quiet stone walls of Nant Coch Farm set back in its fields. At the crest of the hill, the lane met an open fork where a bleached timber guide-post pointed its carved hands along the split—one arm directing travellers down toward Bassaleg and the other toward Risca. It was the very marker post that would later give its name to the <span class="fact-tag">Handpost Inn</span>, standing at a natural vantage where turnpike gates would soon be planted.
@@ -499,12 +516,12 @@
 
       <!-- ACT III -->
       <section class="space-y-5 sm:space-y-6">
-        <div class="pt-8 pb-1 border-b border-parchment-300">
-          <div class="flex items-center gap-2 mb-1.5">
-            <span class="h-px w-5 bg-vermilion"></span>
-            <span class="font-header text-xs tracking-widest text-vermilion font-bold uppercase">Act III</span>
+        <div class="pb-3 mb-6 border-b border-parchment-300">
+          <div class="flex items-center gap-2.5 mb-1.5">
+            <span class="h-0.5 w-6 bg-vermilion"></span>
+            <span class="font-header text-xs sm:text-sm tracking-[0.2em] text-vermilion font-bold uppercase">Act III</span>
           </div>
-          <h2 class="font-sans text-xs sm:text-sm font-semibold tracking-wider text-ink-muted uppercase leading-snug">
+          <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink leading-tight">
             The Clamour of High Street
           </h2>
         </div>
@@ -561,12 +578,12 @@
 
       <!-- ACT IV -->
       <section class="space-y-5 sm:space-y-6">
-        <div class="pt-8 pb-1 border-b border-parchment-300">
-          <div class="flex items-center gap-2 mb-1.5">
-            <span class="h-px w-5 bg-vermilion"></span>
-            <span class="font-header text-xs tracking-widest text-vermilion font-bold uppercase">Act IV</span>
+        <div class="pb-3 mb-6 border-b border-parchment-300">
+          <div class="flex items-center gap-2.5 mb-1.5">
+            <span class="h-0.5 w-6 bg-vermilion"></span>
+            <span class="font-header text-xs sm:text-sm tracking-[0.2em] text-vermilion font-bold uppercase">Act IV</span>
           </div>
-          <h2 class="font-sans text-xs sm:text-sm font-semibold tracking-wider text-ink-muted uppercase leading-snug">
+          <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink leading-tight">
             Diverting from the Bridge: The Castle to Crindau
           </h2>
         </div>
@@ -633,12 +650,12 @@
 
       <!-- ACT V -->
       <section class="space-y-5 sm:space-y-6">
-        <div class="pt-8 pb-1 border-b border-parchment-300">
-          <div class="flex items-center gap-2 mb-1.5">
-            <span class="h-px w-5 bg-vermilion"></span>
-            <span class="font-header text-xs tracking-widest text-vermilion font-bold uppercase">Act V</span>
+        <div class="pb-3 mb-6 border-b border-parchment-300">
+          <div class="flex items-center gap-2.5 mb-1.5">
+            <span class="h-0.5 w-6 bg-vermilion"></span>
+            <span class="font-header text-xs sm:text-sm tracking-[0.2em] text-vermilion font-bold uppercase">Act V</span>
           </div>
-          <h2 class="font-sans text-xs sm:text-sm font-semibold tracking-wider text-ink-muted uppercase leading-snug">
+          <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink leading-tight">
             Malpas House to Caerleon
           </h2>
         </div>
