@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Chapman’s Ellwand: A Journey Through Newport in 1750</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            parchment: {
+              50: '#fcfaf6',
+              100: '#f6f1e5',
+              200: '#ece3d0',
+              300: '#ded0b5',
+              400: '#c5b18f',
+              800: '#383226',
+              900: '#211d16',
+            },
+            ink: {
+              DEFAULT: '#1c1a17',
+              light: '#3e3a34',
+              muted: '#686257',
+              faint: '#9a9284'
+            },
+            vermilion: {
+              DEFAULT: '#9e3521',
+              dark: '#782312',
+              light: '#c85a44'
+            },
+            antiqueGold: {
+              DEFAULT: '#b38b4d',
+              light: '#d4b073',
+              dark: '#87642e'
+            }
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'serif'],
+            display: ['Cormorant Garamond', 'Times New Roman', 'serif'],
+            header: ['Cinzel', 'Trajan Pro', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Editorial Drop Caps */
+    .drop-cap::first-letter {
+      float: left;
+      font-family: 'Cinzel', serif;
+      font-size: 4.5rem;
+      line-height: 0.82;
+      padding-top: 6px;
+      padding-right: 12px;
+      padding-bottom: 0px;
+      color: #9e3521;
+      font-weight: 700;
+    }
+    @media (max-width: 640px) {
+      .drop-cap::first-letter {
+        font-size: 3.8rem;
+        padding-right: 8px;
+      }
+    }
+
+    #progress-bar {
+      transition: width 0.08s ease-out;
+    }
+
+    /* Samuel Pepys Style Rich Tooltips */
+    .pepys-entry {
+      position: relative;
+      display: inline;
+      cursor: pointer;
+      border-bottom: 1.5px dotted #9e3521;
+      color: inherit;
+    }
+    .pepys-entry:hover, .pepys-entry.active {
+      color: #9e3521;
+      background-color: rgba(179, 139, 77, 0.15);
+    }
+    .pepys-popover {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(290px, 85vw);
+      background: #ffffff;
+      border: 1px solid #c5b18f;
+      border-top: 3px solid #9e3521;
+      box-shadow: 0 10px 25px -5px rgba(28, 26, 23, 0.22);
+      border-radius: 4px;
+      padding: 12px 14px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 12px;
+      line-height: 1.45;
+      color: #3e3a34;
+      text-align: left;
+      z-index: 70;
+      pointer-events: auto;
+    }
+    .pepys-popover::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -6px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: #ffffff transparent transparent transparent;
+    }
+    @media (min-width: 768px) {
+      .pepys-entry:hover .pepys-popover,
+      .pepys-entry:focus .pepys-popover {
+        display: block;
+      }
+    }
+    .pepys-entry.active .pepys-popover {
+      display: block !important;
+    }
+
+    /* Highlight Fact Mode */
+    .fact-tag {
+      position: relative;
+      transition: all 0.25s ease;
+      border-bottom: 1px dashed #b38b4d;
+    }
+    body.highlight-facts .fact-tag {
+      background-color: rgba(179, 139, 77, 0.22);
+      border-bottom: 2px solid #9e3521;
+      padding: 0 4px;
+      border-radius: 2px;
+      font-weight: 500;
+    }
+
+    /* Responsive Sidenotes (Edward Tufte Style) */
+    .sidenote-wrapper {
+      position: relative;
+    }
+    .sidenote {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #686257;
+      background: #f6f1e5;
+      border-left: 3px solid #b38b4d;
+      padding: 10px 14px;
+      margin: 16px 0;
+      border-radius: 0 6px 6px 0;
+    }
+    @media (min-width: 1280px) {
+      .sidenote {
+        position: absolute;
+        left: calc(100% + 40px);
+        top: 0;
+        width: 260px;
+        margin: 0;
+        background: transparent;
+        border-left: 2px solid #b38b4d;
+        padding: 2px 0 2px 14px;
+      }
+    }
+
+    /* Map Viewer Container & Controls */
+    .map-pan-container {
+      overflow: hidden;
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+    }
+    .map-pan-container:active {
+      cursor: grabbing;
+    }
+    .map-zoom-target {
+      transform-origin: center center;
+      transition: transform 0.15s ease-out;
+      will-change: transform;
+    }
+
+    /* Footnote Superscripts */
+    .fn-ref {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #9e3521;
+      vertical-align: super;
+      padding: 0 2px;
+      text-decoration: none;
+    }
+    .fn-ref:hover {
+      text-decoration: underline;
+    }
+
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; color: black !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-[#fcfaf6] text-ink antialiased selection:bg-antiqueGold/30 selection:text-ink transition-colors duration-300">
+
+  <!-- Sticky Top Reading Progress Bar -->
+  <div class="fixed top-0 left-0 w-full h-1 bg-parchment-200 z-50 no-print">
+    <div id="progress-bar" class="h-full bg-vermilion w-0"></div>
+  </div>
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-[#fcfaf6]/95 backdrop-blur-md border-b border-parchment-300 transition-colors duration-300 no-print">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 h-14 flex items-center justify-between gap-2">
+      <!-- Left: Branding -->
+      <div class="flex items-center min-w-0">
+        <span class="font-header text-xs sm:text-xs tracking-widest text-vermilion uppercase font-bold truncate">
+          Newport Cornucopia
+        </span>
+        <span class="text-parchment-400 text-sm font-light mx-2 hidden md:inline">|</span>
+        <span class="font-display italic text-sm text-ink-light font-semibold hidden md:inline truncate">
+          The Chapman’s Ellwand
+        </span>
+      </div>
+
+      <!-- Right: Action Buttons -->
+      <div class="flex items-center space-x-1.5 sm:space-x-3 text-xs font-sans shrink-0">
+        <button id="toggle-facts-btn" class="flex items-center space-x-1 px-2 sm:px-3 py-1 rounded border border-parchment-300 hover:border-antiqueGold text-ink-muted hover:text-ink transition whitespace-nowrap">
+          <svg class="w-3.5 h-3.5 text-antiqueGold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span class="hidden sm:inline">Highlight Facts</span>
+          <span class="sm:hidden text-[11px]">Facts</span>
+        </button>
+
+        <a href="#interactive-map" class="px-2 sm:px-2.5 py-1 rounded bg-parchment-100 hover:bg-parchment-200 text-ink-muted hover:text-ink transition hidden md:inline">
+          Route
+        </a>
+        <a href="#burgage-gazetteer" class="px-2 sm:px-2.5 py-1 rounded bg-parchment-100 hover:bg-parchment-200 text-ink-muted hover:text-ink transition text-[11px] sm:text-xs whitespace-nowrap">
+          1750 Key
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Header Section -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-8 text-center">
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <span class="h-px w-8 sm:w-16 bg-vermilion"></span>
+        <span class="font-header text-xs sm:text-sm tracking-[0.22em] text-vermilion uppercase font-bold">
+          Walking Through 1750s Newport
+        </span>
+        <span class="h-px w-8 sm:w-16 bg-vermilion"></span>
+      </div>
+
+      <h1 class="font-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-ink leading-[1.08] mb-6">
+        The Chapman’s Ellwand
+      </h1>
+
+      <p class="font-display italic text-xl sm:text-2xl md:text-3xl text-ink-muted max-w-3xl mx-auto leading-snug mb-8">
+        Walking through mid-18th-century Newport: an unhurried journey from the Rumney crossing through the crowded High Street to the quayside sloops of Caerleon in the summer of 1750.
+      </p>
+
+      <!-- Context Callout -->
+      <div class="bg-parchment-100 border-l-4 border-antiqueGold p-4 sm:p-5 text-left rounded-r-md text-xs sm:text-sm font-sans text-ink-light leading-relaxed">
+        <strong class="font-header uppercase tracking-wider text-antiqueGold-dark block text-xs mb-1">Topographical Guide for Modern Residents</strong>
+        In 1750, Newport was not yet an industrial port city; there were no docks, no Monmouthshire Canal, and no railway viaducts. It was a compact market borough and river port of just over 1,000 inhabitants. This narrative reconstructs what a pedestrian encountered on the ancient parish roads eight years prior to the First Monmouthshire Turnpike Act of 1758.
+      </div>
+    </section>
+
+    <!-- Narrative Article Body -->
+    <article id="article-body" class="max-w-3xl mx-auto px-4 sm:px-6 font-serif text-lg sm:text-xl text-ink leading-relaxed space-y-8 sm:space-y-9">
+
+      <!-- ACT I -->
+      <section class="space-y-5 sm:space-y-6">
+        <div class="pt-8 pb-1 border-b border-parchment-300">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="h-px w-5 bg-vermilion"></span>
+            <span class="font-header text-xs tracking-widest text-vermilion font-bold uppercase">Act I</span>
+          </div>
+          <h2 class="font-sans text-xs sm:text-sm font-semibold tracking-wider text-ink-muted uppercase leading-snug">
+            The Western Approach
+          </h2>
+        </div>
+
+        <p class="drop-cap">
+          His name was Alexander Semple, though along the border valleys of Monmouthshire no one called him that. To the farm wives of Wentloog, the hostlers at the coaching gates, and the magistrates sitting in petty sessions, he was simply 
+          <span class="pepys-entry" tabindex="0">
+            <span class="fact-tag">“the Scotchman.”</span>
+            <span class="pepys-popover">
+              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Trade Classification</strong>
+              An 18th-century commercial term across Britain for travelling tally-drapers selling cloth, linens, and haberdashery on scheduled credit circuits, regardless of actual nationality.
+            </span>
+          </span>
+        </p>
+
+        <p>
+          Semple was forty-two years old, hailing originally from the 
+          <span class="pepys-entry" tabindex="0">
+            <span class="fact-tag">Upper Ward of Lanarkshire</span>
+            <span class="pepys-popover">
+              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Scottish Lowlands</strong>
+              The southern upland territory around Biggar and Lanark, a historic heartland for itinerant weavers, packmen, and linen merchants.
+            </span>
+          </span>. 
+          He had spent eighteen years living out of an oiled canvas pack strapped across his chest and shoulders, working a seasonal tallyman’s circuit through South Wales. His hair was iron-grey, his knees hardened by miles of sunken parish tracks, and his right hand rarely left his <em class="font-serif italic">ellwand</em>—a smoothed ash measuring rod, precisely forty-five inches long, banded with brass at either end. To the women at cottage doorways, it was the honest measure by which he cut lengths of Irish linen, cambric, and calico; to Semple, walking alone down solitary hollow-ways, it was a heavy defensive cudgel against highway footpads and farm mastiffs.
+        </p>
+
+        <div class="sidenote-wrapper">
+          <p>
+            In the heat of late June 1750, Semple was finishing an eastward collection round. He had started the circuit over in the small market town of Cardiff, crossing the ancient border at the historic crossing of <span class="fact-tag">Rumney Bridge</span>. Heading toward Newport, the main thoroughfare did not strike directly across the coastal plain; instead, it swung north in a wide, sweeping arc outward to Bassaleg, skirting well clear of the vast enclosed deer parks, boundary walls, and private home grounds of the <span class="fact-tag">Morgan family at Tredegar House</span>. These rough, rutted parish tracks were completely open and toll-free, maintained only by the reluctant six-day labour of local farmers, though within the decade they would be seized by Parliament and gated as official turnpike roads<a href="#fn-1" id="ref-1" class="fn-ref">1</a>.
+          </p>
+          <div class="sidenote">
+            <strong>Today's Alignment:</strong> The ancient arc around the parklands survives today along the Old Tredegar boundary via Bassaleg before meeting the 1758 Turnpike alignment.
+          </div>
+        </div>
+
+        <p>
+          His canvas pack was noticeably lighter than when he had set out from Cardiff, containing little more than a few remaining pieces of figured ribbon, bone lace, bone buttons, and remnant handkerchiefs. But inside his buckskin breeches, tucked deep into a buttoned fob, was the real weight: sixteen pounds of shillings, half-crowns, and copper pence collected from tenant households across the parishes of Wentloog and Bassaleg.
+        </p>
+
+        <p>
+          Every yard of lane brought a prickle of caution. Only the previous winter, the taprooms in Bassaleg had been buzzing with the news of an assault on this very road: a clerk to 
+          <span class="pepys-entry" tabindex="0">
+            <span class="fact-tag">Mr Peter Davies, the Newport attorney</span>
+            <span class="pepys-popover">
+              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Plots 98 & 102</strong>
+              Peter Davies, prominent Newport attorney at law, holding tenements and legal offices documented on the 1750 plan.
+            </span>
+          </span>, 
+          had been brutally beaten in broad daylight by a local yeoman named <span class="fact-tag">Henry Thomas John</span>, who had made off with the clerk’s five-shilling gun<a href="#fn-2" id="ref-2" class="fn-ref">2</a>. Semple had seen the wanted notice pinned up, warning travellers that the absconder wore a drab surtout and blue shag breeches and could speak not a single word of English<a href="#fn-2" class="fn-ref">2</a>. A travelling dealer carrying hard silver coin down unlit lanes between Bassaleg and Newport was an infinitely richer prize than an attorney’s clerk.
+        </p>
+      </section>
+
+      <!-- Exhibit: Bassaleg-Crime.jpg -->
+      <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
+        <div class="mb-3 border-b border-parchment-300 pb-2">
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Assault & Robbery on the Bassaleg Road</h3>
+        </div>
+
+        <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Bassaleg-Crime.jpg', 'Assault & Robbery on the Bassaleg Road — Gloucester Journal, 7th February, 1749')">
+          <img src="Bassaleg-Crime.jpg" alt="Assault on Bassaleg Road notice" class="w-full max-h-96 object-contain mx-auto group-hover:scale-[1.01] transition-transform duration-200">
+        </div>
+
+        <!-- Full Transcript -->
+        <div class="mt-4 p-3.5 sm:p-4 bg-white/70 rounded border border-parchment-300 font-sans text-xs text-ink leading-relaxed">
+          <strong class="font-header uppercase tracking-wider text-vermilion block text-[11px] mb-1">Transcript of Advertisement<a href="#fn-2" class="fn-ref">2</a>:</strong>
+          <p class="font-serif italic text-sm mb-2">
+            “WHEREAS Henry Thomas John, of the Parish of Bassalleg, in the County of Monmouth, Yeoman, did, on the 23d Day of January last past, assault, barbarously beat and abuse Mr. William Thomas (Clerk to Mr. Peter Davies, Attorney at Law, at Newport, in the County aforesaid) on the Highway, and take from him one Gun of the Value of Five Shillings : And the said Henry Thomas John having since absconded, whoever apprehends him (so that he may be brought to Justice) and gives Notice thereof to the said Mr. Davies, shall be intitled to a Reward of One Guinea, to be paid by me, PETER DAVIES.<a href="#fn-2" class="fn-ref">2</a>
+          </p>
+          <p class="font-serif italic text-sm">
+            N. B. The said Henry Thomas John is about 35 Years of Age, of a fresh Complexion, wears his own sandy lank Hair, is about five Feet seven Inches high, well-built, and speaks nothing but Welch; having on, when he went away, a Drab-colour’d Surtout Coat, and an ordinary Pair of blue Shag Breeches.”<a href="#fn-2" class="fn-ref">2</a>
+          </p>
+          <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted">
+            <strong>Source:</strong> <em>The Gloucester Journal</em>, 7th February, 1749<a href="#fn-2" class="fn-ref">2</a>.
+          </div>
+        </div>
+      </figure>
+
+      <!-- ACT II -->
+      <section class="space-y-5 sm:space-y-6">
+        <div class="pt-8 pb-1 border-b border-parchment-300">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="h-px w-5 bg-vermilion"></span>
+            <span class="font-header text-xs tracking-widest text-vermilion font-bold uppercase">Act II</span>
+          </div>
+          <h2 class="font-sans text-xs sm:text-sm font-semibold tracking-wider text-ink-muted uppercase leading-snug">
+            Over the Ridge to Stow Hill
+          </h2>
+        </div>
+
+        <p>
+          Emerging from the wooded hollows of the parish road, Semple felt the slope stiffen as the track skirted along the southern edge of the ancient earthen ring of <span class="fact-tag">Tredegar Hill Fort</span>, passing the quiet stone walls of Nant Coch Farm set back in its fields. At the crest of the hill, the lane met an open fork where a bleached timber guide-post pointed its carved hands along the split—one arm directing travellers down toward Bassaleg and the other toward Risca. It was the very marker post that would later give its name to the <span class="fact-tag">Handpost Inn</span>, standing at a natural vantage where turnpike gates would soon be planted.
+        </p>
+
+        <p>
+          Turning along the level ridge of Stow Hill, Semple saw the massive square stone tower of <span class="fact-tag">St Woolos Church</span> rise against the sky. It was a venerable church with pre-Norman origins, standing solitary on the high rural skyline rather than hemmed in by city terraces. Here, on the outer borough bounds, sat the Stow Manor Pound for stray cattle alongside the rectorial tithe barn. Passing the boundary markers into the borough proper, he began the descent down Stow Hill over loose red sandstone gravel.
+        </p>
+
+        <div class="sidenote-wrapper">
+          <p>
+            On his left stood the modest stone almshouses <span class="font-sans text-xs bg-parchment-200 px-1 rounded font-mono font-semibold">(Plot 55)</span>, founded fifty years earlier by Roger Williams to shelter six poor women of the town. (Though rebuilt on this lower ground in 1845, the charity would eventually be moved and rebuilt further up the hill in 1901, where its Victorian brick successor still stands). Almost next door sat <span class="font-sans text-xs bg-parchment-200 px-1 rounded font-mono font-semibold">Plot 57</span>, a substantial holding leased by 
+            <span class="pepys-entry" tabindex="0">
+              <span class="fact-tag">Thomas Dumayne, Esq.</span>
+              <span class="pepys-popover">
+                <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Mayor of Newport</strong>
+                Chief magistrate 1750–1754; maltster and merchant occupying a substantial house, stable, 4,000-bushel malthouse, and an acre of orchard.
+              </span>
+            </span>, 
+            who was soon to serve as Mayor of Newport. From the yard behind came the rich, malty smell of sprouted grain from Dumayne’s commercial malthouse, capable of turning out up to four thousand bushels a year, bordered by an acre of private fruit orchard sloping down the ridge.
+          </p>
+          <div class="sidenote">
+            <strong>Modern Landmark:</strong> Dumayne's orchard and maltings stretched down the slope toward modern Friars Walk and Commercial Street.
+          </div>
+        </div>
+
+        <p>
+          Further down on the right lay the 
+          <span class="pepys-entry" tabindex="0">
+            <span class="fact-tag">Free-School-House (Plot 70)</span>
+            <span class="pepys-popover">
+              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">69 Stow Hill</strong>
+              Endowed in 1607 by Alderman William Williams. Later the borough workhouse (1783) and house of refuge; site now beneath a car park below Havelock Street.
+            </span>
+          </span>. 
+          Through the low boundary hedge, Semple could see the well-tended garden, though the schoolroom itself was quiet<a href="#fn-3" id="ref-3" class="fn-ref">3</a>. The previous master had vacated his post two years earlier after gaining preferment at Oxford, and notices had circulated across the county seeking a gentleman skilled in Latin grammar and the classics to take the rent-free lodging<a href="#fn-3" class="fn-ref">3</a>. Semple, whose father had drilled Latin syntax into him in a Lanark parish school, looked on the silent garden with a quiet nod before adjusting his shoulder straps.
+        </p>
+      </section>
+
+      <!-- Exhibit: FreeSchool.jpg -->
+      <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
+        <div class="mb-3 border-b border-parchment-300 pb-2">
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">The Free-School-House Advertised Void of a Master</h3>
+        </div>
+
+        <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('FreeSchool.jpg', 'The Free-School-House Advertised Void — Gloucester Journal, 15th March, 1748')">
+          <img src="FreeSchool.jpg" alt="1748 Free School Advert" class="w-full max-h-80 object-contain mx-auto group-hover:scale-[1.01] transition-transform">
+        </div>
+
+        <div class="mt-4 p-3.5 sm:p-4 bg-white/70 rounded border border-parchment-300 font-sans text-xs text-ink leading-relaxed">
+          <strong class="font-header uppercase tracking-wider text-vermilion block text-[11px] mb-1">Transcript of Advertisement<a href="#fn-3" class="fn-ref">3</a>:</strong>
+          <p class="font-serif italic text-sm mb-2">
+            “NEWPORT, March 12. WHEREAS the FREE-SCHOOL-HOUSE, Rent-free, with a good Garden adjoining, in Newport, in the County of Monmouth, is, together with the School, now void of a Master : Any Person of Character and good Behaviour, and being also well-vers’d in Grammar and the Classicks, may be immediately put in Possession thereof.<a href="#fn-3" class="fn-ref">3</a>
+          </p>
+          <p class="font-serif italic text-sm">
+            N. B. As the late Master quitted the School but the 5th Instant, being promoted in the University of Oxford, having, then, a full School, besides teaching in private Families, it is probable, if Application be soon made, that all those Encouragements may attend the Gentleman that takes to the School.”<a href="#fn-3" class="fn-ref">3</a>
+          </p>
+          <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted">
+            <strong>Source:</strong> <em>The Gloucester Journal</em>, 15th March, 1748<a href="#fn-3" class="fn-ref">3</a>.
+          </div>
+        </div>
+      </figure>
+
+      <!-- Exhibit: Dumayne.jpg -->
+      <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
+        <div class="mb-3 border-b border-parchment-300 pb-2">
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Commercial Premises & Trade Tenancies</h3>
+        </div>
+
+        <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Dumayne.jpg', 'Commercial Tenancy Notice — Gloucester Journal, 10th October, 1752')">
+          <img src="Dumayne.jpg" alt="18th Century Commercial Advert" class="w-full max-h-80 object-contain mx-auto group-hover:scale-[1.01] transition-transform">
+        </div>
+
+        <div class="mt-4 p-3.5 sm:p-4 bg-white/70 rounded border border-parchment-300 font-sans text-xs text-ink leading-relaxed">
+          <strong class="font-header uppercase tracking-wider text-vermilion block text-[11px] mb-1">Transcript of Advertisement<a href="#fn-4" class="fn-ref">4</a>:</strong>
+          <p class="font-serif italic text-sm mb-2">
+            “To be LETT, And Entered upon at Christmas or Lady-Day next, A Very good DWELLING-HOUSE, in the Parish of Horsley, in the County of Gloucester, wherein Mr. Edward Webb lately liv’d, with all Conveniencies fit for a Clothier, and with or without Pasture Land.<a href="#fn-4" class="fn-ref">4</a>
+          </p>
+          <p class="font-serif italic text-sm">
+            Likewise a FULLING-MILL, contiguous to the said House, consisting of Two Stocks and a Gigg-Mill, with a Cloth-Press, and Tenters, &c. all in good Repair. For further Particulars enquire of Paul Castelman, Esq; at Horsley, or of William Jones, at the said House.”<a href="#fn-4" class="fn-ref">4</a>
+          </p>
+          <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted">
+            <strong>Source:</strong> <em>The Gloucester Journal</em>, 10th October, 1752<a href="#fn-4" class="fn-ref">4</a>.
+          </div>
+        </div>
+      </figure>
+
+      <section class="space-y-5 sm:space-y-6">
+        <p>
+          Passing the broken, weather-beaten stone base of an ancient wayside preaching cross near the corner of modern Havelock Street, the steep decline finally began to level out.
+        </p>
+
+        <p>
+          Ahead, commanding the foot of the hill where the road met the bottom of modern Bridge Street, stood 
+          <span class="pepys-entry" tabindex="0">
+            <span class="fact-tag">The Great House (Plot 42)</span>
+            <span class="pepys-popover">
+              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Tredegar Town Mansion</strong>
+              The urban residence of the Morgan family. Converted in the early 19th c. into the Tredegar Estate Offices, later Bailey & Co.'s Bank (now NatWest).
+            </span>
+          </span>. 
+          This was the massive urban town mansion of the Morgan family of Tredegar, an imposing stone compound where estate business was transacted and where the family lodged during borough elections. Long before the plot became the bustling Tredegar Estate Offices, and decades before Bailey & Co.'s Bank and the bronze statue of Sir Charles Morgan occupied the site, Semple steered well clear of its front gates, slipping quietly round the corner into the commercial thoroughfare of High Street.
+        </p>
+      </section>
+
+      <!-- ACT III -->
+      <section class="space-y-5 sm:space-y-6">
+        <div class="pt-8 pb-1 border-b border-parchment-300">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="h-px w-5 bg-vermilion"></span>
+            <span class="font-header text-xs tracking-widest text-vermilion font-bold uppercase">Act III</span>
+          </div>
+          <h2 class="font-sans text-xs sm:text-sm font-semibold tracking-wider text-ink-muted uppercase leading-snug">
+            The Clamour of High Street
+          </h2>
+        </div>
+
+        <p>
+          The scent of roasting grain from Dumayne's malthouse gave way to the foul, damp reek of the town. High Street in 1750 was narrow, noisy, and utterly devoid of drainage. It was market day, and the thoroughfare was an obstacle course of open refuse gutters, domestic dunghills piled outside doorways, and livestock. Farmers had tethered sheep, pigs, and cattle to cellar posts and door rings, creating the very bottlenecks that would draw complaints for over a century until the roadway was finally widened. In the middle of the street stood the timber Market House, surrounded by butter-wives and produce sellers, while the borough bellman rang his brass handbell to cry mayoral bylaws, missing heifers, and the town's sporting bouts.
+        </p>
+
+        <p>
+          Semple pushed past the shouting crowds, taking his pack down the street to hawk his wares. He passed the 
+          <span class="pepys-entry" tabindex="0">
+            <span class="fact-tag">Fleur de Luce (Plot 36)</span>
+            <span class="pepys-popover">
+              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Ye Olde Murenger</strong>
+              Ancient half-timbered inn, seat of the borough toll-collector ('murenger'); still standing on High Street today.
+            </span>
+          </span>, 
+          and made for 
+          <span class="pepys-entry" tabindex="0">
+            <span class="fact-tag">The Red Cow (Plot X)</span>
+            <span class="pepys-popover">
+              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">The Greyhound Hotel</strong>
+              Licensed alehouse of the Widow Hughes. Nos. 48–49 High Street preserve this modest pre-industrial three-storey scale.
+            </span>
+          </span>, 
+          run by the Widow Hughes. Occupying the site of today's Greyhound at Nos. 48–49 High Street, this was an unpretentious, three-storey vernacular alehouse. Its low-ceilinged rooms and narrow burgage shell—which may well survive within the core of those very buildings today—were far more welcoming to a Scotchman's purse. Here, for a few coppers, he could get a bowl of hot pottage and a secure corner to rest his pack.
+        </p>
+
+        <p>
+          Just up the street at <span class="fact-tag">The King's Head (Plot 108)</span>, the town's premier Tredegar-owned coaching inn was overflowing due to a massive four-day cockfighting tournament between the Gentlemen of Monmouthshire and the Gentlemen of Glamorganshire<a href="#fn-5" id="ref-5" class="fn-ref">5</a>. Thirty-one cocks a side were fighting in the Main for three guineas a battle, with a staggering sixty guineas riding on the deciding match<a href="#fn-5" class="fn-ref">5</a>. For an ordinary working man or labourer earning five or six shillings a week, sixty guineas was a small fortune—more than four years of back-breaking manual labour wagered on the clash of feathered spurs<a href="#fn-5" class="fn-ref">5</a>.
+        </p>
+      </section>
+
+      <!-- Exhibit: Cock-Match.jpg -->
+      <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
+        <div class="mb-3 border-b border-parchment-300 pb-2">
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">A Cock-Match at The King’s Head</h3>
+        </div>
+
+        <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Cock-Match.jpg', 'A Cock-Match at The King’s Head — Gloucester Journal, 12th June, 1750')">
+          <img src="Cock-Match.jpg" alt="1750 Cock-Match Advert" class="w-full max-h-80 object-contain mx-auto group-hover:scale-[1.01] transition-transform duration-200">
+        </div>
+
+        <div class="mt-4 p-3.5 sm:p-4 bg-white/70 rounded border border-parchment-300 font-sans text-xs text-ink leading-relaxed">
+          <strong class="font-header uppercase tracking-wider text-vermilion block text-[11px] mb-1">Transcript of Advertisement<a href="#fn-5" class="fn-ref">5</a>:</strong>
+          <p class="font-serif italic text-sm mb-2">
+            “A COCK-MATCH, TO be Fought at the King’s-Head in Newport, Monmouthshire, between the Gentlemen of that County, and the Gentlemen of Glamorganshire : To produce 31 Cocks on each Side, in the Main, for Three Guineas a Battle, and Sixty Guineas the Odd Battle ; and 20 Cocks on each Side, in the Bye’s, for One Guinea a Battle : To weigh on the 18th of June instant, and fight the three following Days.”<a href="#fn-5" class="fn-ref">5</a>
+          </p>
+          <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted">
+            <strong>Source:</strong> <em>The Gloucester Journal</em>, 12th June, 1750<a href="#fn-5" class="fn-ref">5</a>.
+          </div>
+        </div>
+      </figure>
+
+      <!-- ACT IV -->
+      <section class="space-y-5 sm:space-y-6">
+        <div class="pt-8 pb-1 border-b border-parchment-300">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="h-px w-5 bg-vermilion"></span>
+            <span class="font-header text-xs tracking-widest text-vermilion font-bold uppercase">Act IV</span>
+          </div>
+          <h2 class="font-sans text-xs sm:text-sm font-semibold tracking-wider text-ink-muted uppercase leading-snug">
+            Diverting from the Bridge: The Castle to Crindau
+          </h2>
+        </div>
+
+        <p>
+          By mid-afternoon, Semple hoisted his pack once more and headed toward the head of the High Street. Reaching the lower end, the ground dipped down into a hollow—the awkward depression near the river approach known locally in later decades as “The Dip”—before rising toward the timber town bridge. Here, on the corner plot <span class="font-sans text-xs bg-parchment-200 px-1 rounded font-mono font-semibold">(Plot 110)</span>, stood the convenient house and shop belonging to Mr John Thomas, advertised to let that year along with twelve acres of prime grazing meadow on the levels<a href="#fn-6" id="ref-6" class="fn-ref">6</a>.
+        </p>
+      </section>
+
+      <!-- Exhibit: ShopToLett.jpg -->
+      <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
+        <div class="mb-3 border-b border-parchment-300 pb-2">
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">A Convenient House and Shop with Meadow-Ground</h3>
+        </div>
+
+        <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('ShopToLett.jpg', 'A Convenient House and Shop to be Lett — Gloucester Journal, 4th December, 1750')">
+          <img src="ShopToLett.jpg" alt="1750 Shop To Lett Notice" class="w-full max-h-80 object-contain mx-auto group-hover:scale-[1.01] transition-transform duration-200">
+        </div>
+
+        <div class="mt-4 p-3.5 sm:p-4 bg-white/70 rounded border border-parchment-300 font-sans text-xs text-ink leading-relaxed">
+          <strong class="font-header uppercase tracking-wider text-vermilion block text-[11px] mb-1">Transcript of Advertisement<a href="#fn-6" class="fn-ref">6</a>:</strong>
+          <p class="font-serif italic text-sm mb-2">
+            “To be LETT, In the Town of Newport, in the County of Monmouth, A Convenient HOUSE and SHOP, And also Twelve ACRES of good Meadow-Ground. Enquire of Mr. John Thomas, in Cardiffe.”<a href="#fn-6" class="fn-ref">6</a>
+          </p>
+          <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted">
+            <strong>Source:</strong> <em>The Gloucester Journal</em>, 4th December, 1750<a href="#fn-6" class="fn-ref">6</a>.
+          </div>
+        </div>
+      </figure>
+
+      <section class="space-y-5 sm:space-y-6">
+        <p>
+          The obvious post-road to Caerleon crossed the wooden bridge, but taking it meant tackling the brutal, exhausting climb straight up the sheer flank of Christchurch Hill. For a foot-pedlar carrying a heavy pack and pocketfuls of coin, Semple preferred a flatter northern detour, even though it meant skirting the fortified northern edge of town.
+        </p>
+
+        <p>
+          Turning sharp left away from the bridge into narrow 
+          <span class="pepys-entry" tabindex="0">
+            <span class="fact-tag">Thomas Street</span>
+            <span class="pepys-popover">
+              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Birthplace of John Frost</strong>
+              The narrow lane skirted the back of High Street plots; the Chartist leader John Frost was born here at the Royal Oak Inn in 1784.
+            </span>
+          </span>, 
+          he followed the track down to Mill Street. Tucked directly beneath the towers of the semi-ruinous medieval castle, the tidal town mill churned steadily in its millpond.
+        </p>
+
+        <p>
+          Beyond the mill, the town ended. Passing through the Marshes Gate—the northern borough toll boundary where a checkpoint would later stand—Semple stepped out onto <span class="fact-tag">Marshes Road</span>, following what is now the modern Malpas Road corridor.
+        </p>
+
+        <p>
+          In 1750, this was an unpaved, desolate track cutting across open tidal flats. To his left, the road hugged the natural contour of the land just below the slopes of present-day Brynglas, keeping to firmer ground while the sodden, reed-choked marshes and the winding Malpas Brook lay out to his right. Up ahead, perched safely on a slight rise above the marshline, stood 
+          <span class="pepys-entry" tabindex="0">
+            <span class="fact-tag">Crindau House</span>
+            <span class="pepys-popover">
+              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Circa 1318 Manor</strong>
+              Ancient stone manor house preserving 14th-century fabric, historically safe from the tidal surge of the Usk levels.
+            </span>
+          </span>, 
+          an ancient stone manor house with origins stretching back to the early 14th century, keeping watch over the low meadows.
+        </p>
+      </section>
+
+      <!-- ACT V -->
+      <section class="space-y-5 sm:space-y-6">
+        <div class="pt-8 pb-1 border-b border-parchment-300">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="h-px w-5 bg-vermilion"></span>
+            <span class="font-header text-xs tracking-widest text-vermilion font-bold uppercase">Act V</span>
+          </div>
+          <h2 class="font-sans text-xs sm:text-sm font-semibold tracking-wider text-ink-muted uppercase leading-snug">
+            Malpas House to Caerleon
+          </h2>
+        </div>
+
+        <p>
+          Beyond Crindau, the lower tracks were notoriously boggy, saturated whenever spring tides pushed up the river. Semple took the older, higher alignment of the road, climbing gradually along the bank to avoid having his boots sucked into the clay.
+        </p>
+
+        <p>
+          The track brought him into the quiet agricultural hamlet of Malpas. St Mary’s Church stood on its knoll, a small, venerable stone chapel preserving the round arches of its original 12th-century Cluniac priory cell, long before Victorian restorers swept the medieval fabric away to rebuild it in the 1840s.
+        </p>
+
+        <p>
+          A short distance past the church lay <span class="fact-tag">Malpas House</span>, a quiet gentry seat. Semple continued past the turning to call at the estate’s kitchen quarters, successfully bargaining away his last lengths of ribbon and sewing thread to the domestic maids, before doubling back to the junction. (Centuries later, the Three Horseshoes pub would serve travellers at this exact crossing).
+        </p>
+
+        <p>
+          Semple turned eastward onto the track known today as <span class="fact-tag">Pilmawr Road</span>. This was ancient ground: an elevated ridgeway alignment dating back to Roman legionary patrols moving between Caerleon and western forts. The road plunged down toward <span class="fact-tag">Park Pill</span> (later called Malpas Pill), a tidal creek off the Usk where small coastal vessels had long been built and repaired, before climbing again along the higher contour above the river loops.
+        </p>
+
+        <p>
+          As dusk settled, the roofs of Caerleon appeared below. Descending into the ancient borough, Semple bypassed the timber bridge and headed for the warmth of the town's oldest quayside alehouses. Whether bedding down under the timber rafters of the 
+          <span class="pepys-entry" tabindex="0">
+            <span class="fact-tag">Hanbury Arms or the Olde Bull</span>
+            <span class="pepys-popover">
+              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Historic Riverfront Inns</strong>
+              The Olde Bull (advertised by 1730) and the Hanbury Arms (incorporating ancient tower fabric) catered to river pilots, masters, and carters.
+            </span>
+          </span>—which had already been quenching the thirst of river pilots and carters for decades—he could finally slide the heavy pack from his shoulders, unbuckle his coin purse, and rest his ellwand against the hearth.
+        </p>
+      </section>
+
+      <!-- Exhibit: 1750Map.jpg with Interactive Zoom Controls -->
+      <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3 border-b border-parchment-300 pb-2 gap-2">
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Plan of the Town and Borough of Newport (c. 1750)</h3>
+          
+          <!-- Zoom & Pan Controls -->
+          <div class="flex items-center gap-1 bg-white border border-parchment-300 rounded px-2 py-1 shadow-sm self-start sm:self-auto font-sans text-xs">
+            <span class="text-ink-muted mr-1 font-semibold text-[11px] uppercase tracking-wider hidden sm:inline">Zoom:</span>
+            <button onclick="zoomMap(0.25)" class="px-2 py-0.5 hover:bg-parchment-100 rounded text-ink font-bold" title="Zoom In">+</button>
+            <button onclick="zoomMap(-0.25)" class="px-2 py-0.5 hover:bg-parchment-100 rounded text-ink font-bold border-l border-parchment-200" title="Zoom Out">−</button>
+            <button onclick="resetMapZoom()" class="px-2 py-0.5 hover:bg-parchment-100 rounded text-ink-muted text-[11px] border-l border-parchment-200" title="Reset View">Reset</button>
+            <span id="zoom-level" class="text-ink-muted ml-1 text-[10px] font-mono">100%</span>
+          </div>
+        </div>
+
+        <!-- Pan / Zoom Container -->
+        <div id="map-container" class="map-pan-container overflow-hidden rounded border border-parchment-300 bg-black/5 relative max-h-[560px]">
+          <div id="map-target" class="map-zoom-target flex items-center justify-center p-2">
+            <img id="map-img" src="1750Map.jpg" alt="1750 Newport Map" class="w-full max-h-[520px] object-contain mx-auto select-none pointer-events-none">
+          </div>
+          <div class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] font-sans px-2 py-0.5 rounded pointer-events-none sm:hidden">
+            Drag to pan • Use buttons to zoom
+          </div>
+        </div>
+
+        <div class="mt-4 p-3.5 sm:p-4 bg-white/70 rounded border border-parchment-300 font-sans text-xs text-ink leading-relaxed">
+          <strong class="font-header uppercase tracking-wider text-vermilion block text-[11px] mb-1">Archival Cartography Note<a href="#fn-7" class="fn-ref">7</a>:</strong>
+          <p class="font-serif italic text-sm mb-2">
+            “PLAN of the Town & Borough of NEWPORT upon a Scale of 100 Perch to an Inch / Copied from an Ancient Map (about the year 1750) shewing the Proprietors of the respective property with the Borough Boundaries.”<a href="#fn-7" class="fn-ref">7</a>
+          </p>
+          <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <span><strong>Source:</strong> Preserved in the <em>Newport Past</em> historical archives<a href="#fn-7" class="fn-ref">7</a>.</span>
+            <button onclick="openLightbox('1750Map.jpg', 'Plan of the Town and Borough of Newport (c. 1750)')" class="text-vermilion hover:underline text-left sm:text-right font-medium">Open in Fullscreen Modal ↗</button>
+          </div>
+        </div>
+      </figure>
+
+    </article>
+
+    <!-- Interactive Topographical Explorer (10 Waypoints) -->
+    <section id="interactive-map" class="max-w-5xl mx-auto px-4 sm:px-6 my-14 sm:my-20">
+      <div class="bg-parchment-100 border border-parchment-300 rounded-xl p-5 sm:p-8 shadow-sm">
+        
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 pb-4 border-b border-parchment-300 gap-4">
+          <div>
+            <span class="font-header text-xs uppercase tracking-widest text-vermilion font-bold">Topographical Navigator</span>
+            <h2 class="font-display text-2xl sm:text-4xl font-bold text-ink mt-1">The 10 Waypoints of Semple’s Trek</h2>
+            <p class="font-sans text-xs sm:text-sm text-ink-muted mt-1">Compare the 1750 landscape directly against modern 2026 city landmarks.</p>
+          </div>
+          <button onclick="openLightbox('1750Map.jpg', 'Plan of the Town and Borough of Newport (about the year 1750), showing proprietors and boundaries.')" class="px-3.5 py-2 rounded border border-antiqueGold text-antiqueGold-dark hover:bg-antiqueGold/10 font-sans text-xs font-semibold flex items-center gap-1.5 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+            Inspect 1750 Town Plan
+          </button>
+        </div>
+
+        <!-- Waypoint Tabs (Responsive Grid / Horizontal Scroll on Mobile) -->
+        <div id="waypoint-tabs" class="grid grid-cols-2 sm:grid-cols-5 gap-1.5 sm:gap-2 font-sans text-xs mb-6"></div>
+
+        <!-- Waypoint Content Box -->
+        <div id="waypoint-display" class="bg-white p-4 sm:p-6 rounded-lg border border-parchment-300 shadow-sm transition-all"></div>
+
+      </div>
+    </section>
+
+    <!-- Complete 1750 Burgage Gazetteer (113 Plots) -->
+    <section id="burgage-gazetteer" class="max-w-5xl mx-auto px-4 sm:px-6 my-14 sm:my-20">
+      <div class="border-t border-b border-parchment-300 py-10 sm:py-12">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-antiqueGold"></span>
+              <span class="font-header text-xs uppercase tracking-widest text-antiqueGold-dark font-bold">1750 Borough Survey Archive</span>
+            </div>
+            <h2 class="font-display text-2xl sm:text-4xl font-bold text-ink mt-1">Complete Burgage Plot Directory</h2>
+            <p class="font-sans text-xs sm:text-sm text-ink-muted mt-1">All 113 documented plots and proprietors from the 1750 Newport Map Key (including Plot X: The Red Cow).</p>
+          </div>
+
+          <!-- Filter Search Box -->
+          <div class="w-full md:w-80">
+            <label for="gazetteer-search" class="block font-sans text-[11px] uppercase tracking-wider text-ink-muted mb-1 font-semibold">Filter Plots, Names, or Trades</label>
+            <div class="relative">
+              <input type="text" id="gazetteer-search" placeholder="Search e.g. Tredegar, Dumain, Seys..." class="w-full pl-8 pr-3 py-2 text-xs font-sans rounded border border-parchment-300 bg-white focus:outline-none focus:border-vermilion shadow-inner">
+              <svg class="w-4 h-4 text-ink-muted absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Count Pill -->
+        <div class="flex items-center justify-between text-xs font-sans text-ink-muted mb-3 px-1">
+          <span id="gazetteer-count">Showing 113 of 113 plots</span>
+          <span class="text-[11px] italic hidden sm:inline">Source: Newport Past Historical Collection (m1750_key)</span>
+        </div>
+
+        <!-- Fully Visible Table -->
+        <div class="overflow-x-auto rounded-lg border border-parchment-300 bg-white">
+          <table class="min-w-full text-left font-sans text-xs">
+            <thead class="bg-parchment-100 border-b border-parchment-300 text-ink uppercase tracking-wider text-[11px] font-semibold">
+              <tr>
+                <th class="py-3 px-3 sm:px-4 w-14 sm:w-16">Plot</th>
+                <th class="py-3 px-3 sm:px-4">1750 Record / Proprietor</th>
+                <th class="py-3 px-3 sm:px-4">Estate / Family Note</th>
+                <th class="py-3 px-3 sm:px-4">Topographical Significance</th>
+              </tr>
+            </thead>
+            <tbody id="gazetteer-tbody" class="divide-y divide-parchment-200 text-ink-light"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full-Width Traditional Footnotes Section -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 mb-16 pt-8 border-t border-parchment-300 font-sans text-xs text-ink-muted leading-relaxed">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-2 h-2 rounded-full bg-vermilion"></span>
+        <h4 class="font-header text-xs uppercase tracking-widest text-vermilion font-bold">Notes & Archival References</h4>
+      </div>
+      <ol class="space-y-3 list-decimal pl-5">
+        <li id="fn-1" class="pl-1">
+          <strong>Turnpike Legislation:</strong> The First Monmouthshire Turnpike Act (31 Geo. II c. 44) was passed by Parliament in 1758, establishing turnpike trusts to erect tollgates and pave the ancient parish highways between Cardiff, Newport, and the Western Valleys. <a href="#ref-1" class="text-vermilion ml-1" title="Back to text">↩</a>
+        </li>
+        <li id="fn-2" class="pl-1">
+          <strong>Bassaleg Highway Assault:</strong> <em>The Gloucester Journal</em>, 7th February, 1749. Notice placed by Peter Davies, Attorney at Law, Newport, Monmouthshire. <a href="#ref-2" class="text-vermilion ml-1" title="Back to text">↩</a>
+        </li>
+        <li id="fn-3" class="pl-1">
+          <strong>Grammar School Vacancy:</strong> <em>The Gloucester Journal</em>, 15th March, 1748. Notice advertising the Free-School-House, rent-free with adjoining garden. <a href="#ref-3" class="text-vermilion ml-1" title="Back to text">↩</a>
+        </li>
+        <li id="fn-4" class="pl-1">
+          <strong>Commercial Tenancy & Trade:</strong> <em>The Gloucester Journal</em>, 10th October, 1752. Notice regarding clothier conveniences and fulling-mill premises. <a href="#article-body" class="text-vermilion ml-1" title="Back to text">↩</a>
+        </li>
+        <li id="fn-5" class="pl-1">
+          <strong>King's Head Cockfight:</strong> <em>The Gloucester Journal</em>, 12th June, 1750. Notice for the cock-match between the Gentlemen of Monmouthshire and Glamorganshire. <a href="#ref-5" class="text-vermilion ml-1" title="Back to text">↩</a>
+        </li>
+        <li id="fn-6" class="pl-1">
+          <strong>House and Shop to Let:</strong> <em>The Gloucester Journal</em>, 4th December, 1750. Notice placed by Mr John Thomas in Cardiffe for premises in Newport. <a href="#ref-6" class="text-vermilion ml-1" title="Back to text">↩</a>
+        </li>
+        <li id="fn-7" class="pl-1">
+          <strong>Town Plan & Borough Survey:</strong> <em>Plan of the Town & Borough of Newport</em> (copied from an ancient map c. 1750), preserved in Newport Reference Library and transcribed by <em>Newport Past</em> (ref: m1750_key). <a href="#article-body" class="text-vermilion ml-1" title="Back to text">↩</a>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Footer -->
+    <footer class="max-w-4xl mx-auto px-4 sm:px-6 pb-20 text-center text-xs font-sans text-ink-muted border-t border-parchment-300 pt-8">
+      <div class="flex justify-center items-center gap-2 mb-3">
+        <span class="font-header tracking-widest text-vermilion font-bold uppercase text-sm">Newport Cornucopia</span>
+      </div>
+      <p class="max-w-xl mx-auto leading-relaxed mb-4 font-serif text-sm text-ink-light">
+        A longform narrative monograph recreating the sounds, topography, and social contours of Monmouthshire on the eve of the Industrial Revolution.
+      </p>
+    </footer>
+
+  </main>
+
+  <!-- Interactive Lightbox Modal -->
+  <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm hidden items-center justify-center p-4 no-print" onclick="closeLightbox()">
+    <div class="relative max-w-5xl w-full max-h-[92vh] flex flex-col bg-[#1c1a17] text-parchment-100 rounded-xl overflow-hidden border border-antiqueGold/40 shadow-2xl" onclick="event.stopPropagation()">
+      <div class="p-3 sm:p-4 border-b border-white/10 flex items-center justify-between">
+        <h3 id="lightbox-caption" class="font-serif text-xs sm:text-base font-semibold text-antiqueGold-light"></h3>
+        <button onclick="closeLightbox()" class="text-white/70 hover:text-white p-1 rounded-full hover:bg-white/10 transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <div class="p-2 sm:p-6 flex-1 flex items-center justify-center overflow-auto bg-black/40">
+        <img id="lightbox-img" src="" alt="Enlarged Archival View" class="max-h-[72vh] max-w-full object-contain rounded shadow-lg">
+      </div>
+      <div class="px-4 py-2 bg-black/60 border-t border-white/10 text-right font-sans text-xs text-parchment-300">
+        Click outside or press Esc to return
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Implementation -->
+  <script>
+    // Complete 113 Burgage Plots from Newport Past Key
+    const rawPlotsData = [
+      { no: "1", prop: "Two Tenements", note: "Tredegar", sig: "Morgan estate holding near Westgate" },
+      { no: "2", prop: "Do.", note: "Tredegar", sig: "Tenement holding" },
+      { no: "3", prop: "Do.", note: "Tredegar", sig: "Tenement holding" },
+      { no: "4", prop: "Margaret Powell", note: "Freeholder", sig: "Town burgage" },
+      { no: "5", prop: "Charles Van Esq", note: "Llanwern Estate", sig: "Prominent Monmouthshire gentry family" },
+      { no: "6", prop: "Roger Richards", note: "Burgess", sig: "Stow Hill burgage" },
+      { no: "7", prop: "Mr Greensword", note: "Freeholder", sig: "Stow Hill tenement" },
+      { no: "8", prop: "3 tenants to Llan Rumney", note: "Llanrumney Estate", sig: "Western valley landholding" },
+      { no: "9", prop: "One Tenement", note: "Tredegar", sig: "Morgan estate" },
+      { no: "10", prop: "Do.", note: "Tredegar", sig: "Morgan estate" },
+      { no: "11", prop: "Do.", note: "Tredegar", sig: "Morgan estate" },
+      { no: "12", prop: "Mr Roger Williams", note: "Williams Family", sig: "Local civic lineage" },
+      { no: "13", prop: "Do.", note: "Williams Family", sig: "Local civic lineage" },
+      { no: "14", prop: "One Tenement", note: "Tredegar", sig: "Morgan estate" },
+      { no: "15", prop: "Mr Charles Morgan", note: "Tredegar Cadet", sig: "Morgan family holding" },
+      { no: "16", prop: "Mr Roger Williams", note: "Williams Family", sig: "Stow Hill holding" },
+      { no: "17", prop: "One Tenement", note: "Tredegar", sig: "Morgan estate" },
+      { no: "18", prop: "Mr Greensword 2 Tenements", note: "Freeholder", sig: "Multiple dwellings" },
+      { no: "19", prop: "The Meeting House", note: "Dissenters", sig: "Historic Nonconformist Chapel (Mill St/Meeting House Field)" },
+      { no: "20", prop: "Mr Roger Williams", note: "Williams Family", sig: "Stow Hill holding" },
+      { no: "21", prop: "Mr David Harry", note: "Burgess", sig: "Town burgage" },
+      { no: "22", prop: "Mr Andrew Waver", note: "Freeholder", sig: "Urban tenement" },
+      { no: "23", prop: "Late Henry Griffith deceased", note: "Estate of Griffith", sig: "Probate burgage" },
+      { no: "24", prop: "Honble Thomas Morgan Esq", note: "Tredegar / Ruperra", sig: "Judge Advocate General & MP" },
+      { no: "25", prop: "Parson Evans of Caerleon", note: "Clergy", sig: "Caerleon ecclesiastical interest" },
+      { no: "26", prop: "Late Henry Griffith", note: "Estate of Griffith", sig: "Urban tenement" },
+      { no: "27", prop: "Honble Thomas Morgan Esq", note: "Tredegar", sig: "Morgan estate" },
+      { no: "28", prop: "John Frost", note: "18th-c. Burgess", sig: "Early Newport burgess (predecessor of Chartist)" },
+      { no: "29", prop: "Mr Roger Williams", note: "Williams Family", sig: "Town holding" },
+      { no: "30", prop: "Three Tenements", note: "Tredegar", sig: "High Street block" },
+      { no: "31", prop: "Mr Charles Morgan", note: "Tredegar", sig: "High Street frontage" },
+      { no: "32 & 33", prop: "Mr Thomas Pritchard", note: "Burgess", sig: "Double burgage plot" },
+      { no: "34 & 35", prop: "Mr Wm Griffiths", note: "Freeholder", sig: "High Street holding" },
+      { no: "36", prop: "The Fleur de Luce", note: "Ancient Inn", sig: "Ye Olde Murenger House (survives today)" },
+      { no: "37", prop: "The Heirs of Penlloyn", note: "Penllwyn Estate", sig: "Mackworth / Morgan of Penllwyn inheritance" },
+      { no: "X", prop: "The Red Cow the Widow Hughes", note: "Licensed Alehouse", sig: "Nos. 48–49 High Street (The Greyhound)" },
+      { no: "38", prop: "The Dragon", note: "Tredegar", sig: "High Street Coaching Inn" },
+      { no: "39", prop: "Mr Charles Morgan", note: "Tredegar", sig: "High Street burgage" },
+      { no: "40", prop: "Richard Metcalfe", note: "Burgess", sig: "Town holding" },
+      { no: "41", prop: "Andrew Waver", note: "Freeholder", sig: "High Street holding" },
+      { no: "42", prop: "The Great House", note: "Tredegar", sig: "Tredegar Town Mansion; later Estate Offices & Bailey's Bank" },
+      { no: "43", prop: "Six Tenements", note: "Tredegar", sig: "Adjoining Great House" },
+      { no: "44", prop: "Mrs Mary Herbert", note: "Herbert Gentry", sig: "Ancient regional family" },
+      { no: "45", prop: "Four Tenements", note: "Tredegar", sig: "High Street rental block" },
+      { no: "46", prop: "Mr Charles Morgan", note: "Tredegar", sig: "Urban holding" },
+      { no: "47", prop: "Two Tenements", note: "Tredegar", sig: "Urban holding" },
+      { no: "48", prop: "William Seys Esq", note: "The Gaer House", sig: "High Sheriff (1738) & Mayor of Newport (1746)" },
+      { no: "49", prop: "Honble Thomas Morgan Esq", note: "Tredegar", sig: "Morgan holding" },
+      { no: "50", prop: "Four Tenements", note: "Tredegar", sig: "Stow Hill entry tenements" },
+      { no: "51", prop: "Kate Games", note: "Games Family", sig: "Breconshire gentry connection" },
+      { no: "52", prop: "Mr Roger Williams", note: "Williams Family", sig: "Town burgage" },
+      { no: "53", prop: "Garden", note: "Tredegar", sig: "Horticultural ground on hill slope" },
+      { no: "54", prop: "Kemeys", note: "Kemeys of Cefn Mably", sig: "Ancient regional dynasty" },
+      { no: "55", prop: "Alms Houses", note: "Roger Williams Endow.", sig: "Charity for 6 poor women (rebuilt 1845 & 1901)" },
+      { no: "56", prop: "Mrs Richards of Cardiff", note: "Glamorgan Interest", sig: "Cardiff-based rentier" },
+      { no: "57", prop: "Mr Dumain", note: "Thomas Dumayne, Esq.", sig: "Mayor 1750–54; 4,000-bushel malthouse & acre orchard" },
+      { no: "58", prop: "Thomas Parson", note: "Freeholder", sig: "Stow Hill burgage" },
+      { no: "60", prop: "Mr Seys", note: "The Gaer Estate", sig: "Seys family holding" },
+      { no: "61", prop: "The Honble Thomas Morgan Esq", note: "Tredegar", sig: "Stow Hill estate land" },
+      { no: "62", prop: "Richard Burton", note: "Burgess", sig: "Town holding" },
+      { no: "63", prop: "One Tenement", note: "Tredegar", sig: "Morgan estate" },
+      { no: "64", prop: "The Kensel Farm", note: "Tredegar", sig: "Agricultural holding east of Stow Hill" },
+      { no: "65", prop: "The Heirs of Penlloyn", note: "Penllwyn Estate", sig: "Landed interest" },
+      { no: "66", prop: "William Lewis", note: "Burgess", sig: "Stow Hill holding" },
+      { no: "67", prop: "Mr Roger Williams", note: "Williams Family", sig: "Stow Hill plot" },
+      { no: "68", prop: "Three Tenements", note: "Tredegar", sig: "Stow Hill rentals" },
+      { no: "69", prop: "Mr Roger Williams", note: "Williams Family", sig: "Holding near school" },
+      { no: "70", prop: "The School House", note: "Borough Free School", sig: "Endowed 1607 by Ald. Williams; advertised vacant 1748" },
+      { no: "71-72-73", prop: "Mrs Richards", note: "Rentier", sig: "Multiple Stow Hill tenements" },
+      { no: "74", prop: "The Heirs of Penlloyn", note: "Penllwyn Estate", sig: "Stow Hill land" },
+      { no: "75", prop: "Garden", note: "Tredegar", sig: "Slope garden" },
+      { no: "76", prop: "Two Do. [Gardens]", note: "Tredegar", sig: "Terraced orchards/gardens" },
+      { no: "77", prop: "Orchard", note: "Tredegar", sig: "Orchard plot above town" },
+      { no: "78", prop: "Four Tenements", note: "Tredegar", sig: "East side of High Street" },
+      { no: "79", prop: "Roger Springet", note: "Burgess", sig: "Town burgage" },
+      { no: "80", prop: "Llanrumney", note: "Llanrumney Hall", sig: "Western manor estate holding" },
+      { no: "81", prop: "Thomas Phillips Gent", note: "Local Gentry", sig: "Substantial burgage" },
+      { no: "82", prop: "Four Tenements", note: "Tredegar", sig: "Commercial rental block" },
+      { no: "83", prop: "The Heirs of Penlloyn", note: "Penllwyn Estate", sig: "Borough property" },
+      { no: "84", prop: "Two Tenements", note: "Tredegar", sig: "High Street frontage" },
+      { no: "85", prop: "The Heirs of Penlloyn", note: "Penllwyn Estate", sig: "River approach land" },
+      { no: "86", prop: "Six Tenements", note: "Tredegar", sig: "Dense residential block" },
+      { no: "87", prop: "Mr Adam Barber", note: "Merchant / Burgess", sig: "High Street merchant" },
+      { no: "88", prop: "The Heirs of Thomas Clifford Esq", note: "Clifford Estate", sig: "Riverfront burgage" },
+      { no: "89", prop: "The Warehouse", note: "Tredegar", sig: "Key river wharf warehouse for maritime trade" },
+      { no: "90", prop: "The Heirs of Thomas Clifford Esq", note: "Clifford Estate", sig: "Wharfside tenement" },
+      { no: "91", prop: "Seven Tenements", note: "Tredegar", sig: "Riverfront working-class tenements" },
+      { no: "92", prop: "Elizabeth Nicholas", note: "Freeholder", sig: "Town holding" },
+      { no: "93-94", prop: "Richard Greenfield", note: "Burgess", sig: "Double tenement" },
+      { no: "95", prop: "Four Tenements", note: "Tredegar", sig: "High Street tenements" },
+      { no: "96", prop: "Kemeys", note: "Kemeys Dynasty", sig: "Wharf approach land" },
+      { no: "97", prop: "One Tenement", note: "Tredegar", sig: "High Street plot" },
+      { no: "98", prop: "Mr Davies", note: "Peter Davies", sig: "Offices of Attorney at Law Peter Davies" },
+      { no: "99", prop: "The Honble Morgan Esq Ruperra", note: "Ruperra Castle", sig: "Branch seat of the Morgan family" },
+      { no: "100", prop: "Hopkins Lewis", note: "Freeholder", sig: "Town burgage" },
+      { no: "101", prop: "Kemeys, Old Sloop", note: "Kemeys / Maritime", sig: "Quayside alehouse servicing Bristol Channel trows" },
+      { no: "102", prop: "Mr Davies", note: "Peter Davies", sig: "Tenement of Attorney Peter Davies" },
+      { no: "103", prop: "Two Tenements", note: "Tredegar", sig: "River approach" },
+      { no: "104", prop: "?", note: "Unlisted in key", sig: "Unattributed tenement" },
+      { no: "105", prop: "?", note: "Unlisted in key", sig: "Unattributed tenement" },
+      { no: "106", prop: "The Heirs of Penlloyn", note: "Penllwyn Estate", sig: "High Street frontage" },
+      { no: "107", prop: "Pyes Shop & 1 Tenement", note: "Tredegar", sig: "Documented shop premises on High Street" },
+      { no: "108", prop: "Kings Head & House djg", note: "Tredegar", sig: "The King's Head Coaching Inn & Cockpit" },
+      { no: "109", prop: "William Jones", note: "Freeholder", sig: "Town burgage" },
+      { no: "110", prop: "Mr John Thomas", note: "Cardiff Landlord", sig: "House, Shop & 12 Acres Meadow advertised 1750" },
+      { no: "111", prop: "The Heathcock .. Duke of Beaufort", note: "Beaufort Seigniorial", sig: "Ducal inn property near Town Bridge" },
+      { no: "112", prop: "??? Duke of Beaufort & Kemeys", note: "Beaufort / Kemeys", sig: "Boundary holding near Castle Green" }
+    ];
+
+    // Swapped: 6 is The Red Cow, 7 is The King's Head
+    const routeWaypoints = [
+      {
+        id: 1,
+        title: "1. Bassaleg Highway",
+        year1750: "Unpaved Statute Labour Track",
+        yearNow: "Bassaleg Road corridor (A467 link)",
+        act: "Act I",
+        text: "Deeply rutted parish road through Welsh-speaking pastoral country. Scene of the documented January 1749 highway robbery by Henry Thomas John against attorney Peter Davies's clerk."
+      },
+      {
+        id: 2,
+        title: "2. The Handpost Fork",
+        year1750: "1697 Statutory Guide-Post",
+        yearNow: "The Handpost Junction (Risca Rd / Stow Hill)",
+        act: "Act II",
+        text: "A weathered wooden finger-post marking the fork between Bassaleg and Risca, giving its name to the later Handpost Inn and acting as the future 1758 tollgate barrier."
+      },
+      {
+        id: 3,
+        title: "3. St Woolos Ridge",
+        year1750: "Parish Mother Church & Tithe Barn",
+        yearNow: "Newport Cathedral (St Woolos)",
+        act: "Act II",
+        text: "Venerable stone church with pre-Norman roots standing isolated on the skyline, alongside the Manor cattle pound and rectorial tithe barn at the borough boundary."
+      },
+      {
+        id: 4,
+        title: "4. The Free School",
+        year1750: "Schoolhouse & Garden (Plot 70)",
+        yearNow: "69 Stow Hill (car park below Havelock St)",
+        act: "Act II",
+        text: "Endowed in 1607 by Alderman William Williams. Advertised in March 1748 for a grammar master versed in classics following an Oxford preferment."
+      },
+      {
+        id: 5,
+        title: "5. The Great House",
+        year1750: "Tredegar Town Mansion (Plot 42)",
+        yearNow: "Corner of High St & Bridge St (NatWest Bank)",
+        act: "Act II",
+        text: "The imposing stone town mansion of the Morgans of Tredegar, later rebuilt as the Tredegar Estate Offices, Bailey & Co.'s Bank, and site of the 1848 Charles Morgan statue."
+      },
+      {
+        id: 6,
+        title: "6. The Red Cow",
+        year1750: "Vernacular Alehouse (Plot X)",
+        yearNow: "Nos. 48–49 High Street (The Greyhound)",
+        act: "Act III",
+        text: "Low-ceilinged three-storey alehouse run by the Widow Hughes. Its narrow burgage plot and vernacular proportions survive at the heart of today's pub."
+      },
+      {
+        id: 7,
+        title: "7. The King's Head",
+        year1750: "Tredegar Coaching Inn (Plot 108)",
+        yearNow: "The King's Hotel building, High Street",
+        act: "Act III",
+        text: "Principal inn at the top of High Street; scene of the massive June 1750 Monmouthshire vs Glamorganshire 31-cock match with 60 guineas on the deciding battle."
+      },
+      {
+        id: 8,
+        title: "8. Thomas Street & Mill",
+        year1750: "Castle Bypass & Lord's Tidal Mill",
+        yearNow: "Thomas Street / Mill Street / Castle rear",
+        act: "Act IV",
+        text: "A sharp left detour around the castle curtain wall to avoid the grueling climb up Christchurch Hill. Later the birthplace of Chartist leader John Frost in 1784."
+      },
+      {
+        id: 9,
+        title: "9. Crindau House",
+        year1750: "Medieval Stone Manor (c. 1318)",
+        yearNow: "Crindau House, Malpas Road",
+        act: "Act IV",
+        text: "Substantial stone residence raised safely above the saturated salt marsh and tidal floodline of the River Usk and Malpas Brook."
+      },
+      {
+        id: 10,
+        title: "10. Caerleon Wharves",
+        year1750: "The Olde Bull & Hanbury Arms",
+        yearNow: "Historic Caerleon quays & inns",
+        act: "Act V",
+        text: "Ancient market borough where river sloops loaded timber, coal, and pig iron for Bristol, ending Alexander Semple's eight-mile collection trek."
+      }
+    ];
+
+    let activeWp = 1;
+
+    function renderWaypoints() {
+      const tabsContainer = document.getElementById('waypoint-tabs');
+      if (!tabsContainer) return;
+
+      tabsContainer.innerHTML = routeWaypoints.map(wp => `
+        <button onclick="setWaypoint(${wp.id})" class="px-2 py-1.5 sm:px-2.5 sm:py-2 text-left rounded border transition truncate ${wp.id === activeWp ? 'bg-vermilion text-white border-vermilion font-medium shadow-sm' : 'bg-white border-parchment-300 hover:border-antiqueGold text-ink-muted'}">
+          <span class="font-bold sm:hidden">${wp.id}.</span> <span class="hidden sm:inline">${wp.title}</span><span class="sm:hidden">${wp.title.replace(/^\d+\.\s*/, '')}</span>
+        </button>
+      `).join('');
+
+      const cur = routeWaypoints.find(w => w.id === activeWp) || routeWaypoints[0];
+      const display = document.getElementById('waypoint-display');
+      if (!display) return;
+
+      display.innerHTML = `
+        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-parchment-200 pb-3 mb-4 gap-2">
+          <div>
+            <span class="text-[10px] font-sans font-bold uppercase text-vermilion tracking-widest">${cur.act} • Milestone ${cur.id} of 10</span>
+            <h3 class="font-display text-xl sm:text-3xl font-bold text-ink">${cur.title}</h3>
+          </div>
+          <span class="px-2.5 py-1 bg-parchment-100 rounded border border-parchment-300 text-xs font-sans text-ink-muted self-start md:self-auto">Monmouthshire Historic Route</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-sans mb-3">
+          <div class="p-3 bg-parchment-100 rounded border border-parchment-300">
+            <span class="block text-[10px] uppercase font-bold text-vermilion">1750 Pre-Turnpike State</span>
+            <span class="font-serif text-sm sm:text-base text-ink font-semibold mt-0.5 block">${cur.year1750}</span>
+          </div>
+          <div class="p-3 bg-parchment-100 rounded border border-parchment-300">
+            <span class="block text-[10px] uppercase font-bold text-antiqueGold-dark">Modern 2026 Parallel</span>
+            <span class="font-serif text-sm sm:text-base text-ink font-semibold mt-0.5 block">${cur.yearNow}</span>
+          </div>
+        </div>
+        <p class="font-serif text-sm sm:text-base text-ink-light leading-relaxed mt-2">${cur.text}</p>
+      `;
+    }
+
+    function setWaypoint(id) {
+      activeWp = id;
+      renderWaypoints();
+    }
+
+    function renderGazetteerTable(query = '') {
+      const tbody = document.getElementById('gazetteer-tbody');
+      const countLabel = document.getElementById('gazetteer-count');
+      if (!tbody) return;
+
+      const q = query.toLowerCase().trim();
+      const filtered = rawPlotsData.filter(item => 
+        item.no.toLowerCase().includes(q) ||
+        item.prop.toLowerCase().includes(q) ||
+        item.note.toLowerCase().includes(q) ||
+        item.sig.toLowerCase().includes(q)
+      );
+
+      if (countLabel) {
+        countLabel.innerText = `Showing ${filtered.length} of ${rawPlotsData.length} plots`;
+      }
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" class="py-6 text-center text-ink-muted italic">No matching plots found for “${query}”.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(item => `
+        <tr class="hover:bg-parchment-50 transition border-b border-parchment-200">
+          <td class="py-2.5 px-3 sm:px-4 font-mono font-bold text-vermilion text-xs">${item.no}</td>
+          <td class="py-2.5 px-3 sm:px-4 font-medium text-ink">${item.prop}</td>
+          <td class="py-2.5 px-3 sm:px-4 text-antiqueGold-dark font-medium">${item.note}</td>
+          <td class="py-2.5 px-3 sm:px-4 text-ink-muted">${item.sig}</td>
+        </tr>
+      `).join('');
+    }
+
+    // Lightbox Controls
+    function openLightbox(src, caption) {
+      const modal = document.getElementById('lightbox-modal');
+      const img = document.getElementById('lightbox-img');
+      const cap = document.getElementById('lightbox-caption');
+      if (!modal || !img) return;
+
+      img.src = src;
+      if (cap) cap.innerText = caption;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightbox-modal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Map Zoom & Pan State
+    let mapScale = 1;
+    let isPanning = false;
+    let startX = 0, startY = 0;
+    let translateX = 0, translateY = 0;
+
+    function updateMapTransform() {
+      const target = document.getElementById('map-target');
+      const indicator = document.getElementById('zoom-level');
+      if (target) {
+        target.style.transform = `translate(${translateX}px, ${translateY}px) scale(${mapScale})`;
+      }
+      if (indicator) {
+        indicator.innerText = Math.round(mapScale * 100) + '%';
+      }
+    }
+
+    function zoomMap(delta) {
+      mapScale = Math.min(3.5, Math.max(1, mapScale + delta));
+      if (mapScale === 1) {
+        translateX = 0;
+        translateY = 0;
+      }
+      updateMapTransform();
+    }
+
+    function resetMapZoom() {
+      mapScale = 1;
+      translateX = 0;
+      translateY = 0;
+      updateMapTransform();
+    }
+
+    // Map Pan Interactions (Mouse & Touch)
+    function setupMapPan() {
+      const container = document.getElementById('map-container');
+      if (!container) return;
+
+      container.addEventListener('mousedown', (e) => {
+        if (mapScale <= 1) return;
+        isPanning = true;
+        startX = e.clientX - translateX;
+        startY = e.clientY - translateY;
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isPanning) return;
+        translateX = e.clientX - startX;
+        translateY = e.clientY - startY;
+        updateMapTransform();
+      });
+
+      window.addEventListener('mouseup', () => { isPanning = false; });
+
+      // Mobile Touch Handling
+      container.addEventListener('touchstart', (e) => {
+        if (mapScale <= 1 || e.touches.length !== 1) return;
+        isPanning = true;
+        startX = e.touches[0].clientX - translateX;
+        startY = e.touches[0].clientY - translateY;
+      }, { passive: true });
+
+      container.addEventListener('touchmove', (e) => {
+        if (!isPanning || e.touches.length !== 1) return;
+        translateX = e.touches[0].clientX - startX;
+        translateY = e.touches[0].clientY - startY;
+        updateMapTransform();
+      }, { passive: true });
+
+      container.addEventListener('touchend', () => { isPanning = false; });
+    }
+
+    // Pepys Touch Popover Toggling on Mobile
+    function setupMobilePepys() {
+      const entries = document.querySelectorAll('.pepys-entry');
+      entries.forEach(entry => {
+        entry.addEventListener('click', (e) => {
+          // If on desktop hover, let CSS handle it
+          if (window.innerWidth >= 768) return;
+          
+          e.stopPropagation();
+          const isActive = entry.classList.contains('active');
+          entries.forEach(el => el.classList.remove('active'));
+          if (!isActive) entry.classList.add('active');
+        });
+      });
+
+      document.addEventListener('click', () => {
+        entries.forEach(el => el.classList.remove('active'));
+      });
+    }
+
+    // Initialisation
+    function init() {
+      renderWaypoints();
+      renderGazetteerTable();
+      setupMapPan();
+      setupMobilePepys();
+
+      const searchInput = document.getElementById('gazetteer-search');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => renderGazetteerTable(e.target.value));
+      }
+
+      const toggleFacts = document.getElementById('toggle-facts-btn');
+      if (toggleFacts) {
+        toggleFacts.addEventListener('click', () => {
+          document.body.classList.toggle('highlight-facts');
+          toggleFacts.classList.toggle('bg-antiqueGold/20');
+          toggleFacts.classList.toggle('border-antiqueGold');
+        });
+      }
+
+      window.addEventListener('scroll', () => {
+        const bar = document.getElementById('progress-bar');
+        if (!bar) return;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (window.scrollY / (docHeight || 1)) * 100;
+        bar.style.width = `${progress}%`;
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  </script>
+</body>
+</html>
