@@ -279,20 +279,20 @@
       </div>
     </section>
 
-    <!-- Narrative Article Body -->
+<!-- Narrative Article Body -->
     <article id="article-body" class="max-w-3xl mx-auto px-4 sm:px-6 font-serif text-lg sm:text-xl text-ink leading-relaxed space-y-8 sm:space-y-9">
 
       <!-- ACT I -->
       <section class="space-y-5 sm:space-y-6">
-      <div class="pt-10 pb-3 mb-6 border-b border-parchment-300">
-        <div class="flex items-center gap-2.5 mb-1.5">
-          <span class="h-0.5 w-6 bg-vermilion"></span>
-          <span class="font-header text-xs sm:text-sm tracking-[0.2em] text-vermilion font-bold uppercase">Act I</span>
+        <div class="pt-10 pb-3 mb-6 border-b border-parchment-300">
+          <div class="flex items-center gap-2.5 mb-1.5">
+            <span class="h-0.5 w-6 bg-vermilion"></span>
+            <span class="font-header text-xs sm:text-sm tracking-[0.2em] text-vermilion font-bold uppercase">Act I</span>
+          </div>
+          <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink leading-tight">
+            The Western Approach
+          </h2>
         </div>
-        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink leading-tight">
-          The Western Approach
-        </h2>
-      </div>
 
         <p class="drop-cap">
           His name was Alexander Semple, though along the border valleys of Monmouthshire no one called him that. To the farm wives of Wentloog, the hostlers at the coaching gates, and the magistrates sitting in petty sessions, he was simply 
@@ -345,27 +345,40 @@
 
       <!-- Exhibit: Bassaleg-Crime.jpg -->
       <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
-        <div class="mb-3 border-b border-parchment-300 pb-2">
-          <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Assault & Robbery on the Bassaleg Road</h3>
+        <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Assault &amp; Robbery on the Bassaleg Road</h3>
+          <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">1749 Primary Clipping</span>
         </div>
 
         <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Bassaleg-Crime.jpg', 'Assault & Robbery on the Bassaleg Road — Gloucester Journal, 7th February, 1749')">
           <img src="Bassaleg-Crime.jpg" alt="Assault on Bassaleg Road notice" class="w-full max-h-96 object-contain mx-auto group-hover:scale-[1.01] transition-transform duration-200">
         </div>
 
-        <!-- Full Transcript -->
-        <div class="mt-4 p-3.5 sm:p-4 bg-white/70 rounded border border-parchment-300 font-sans text-xs text-ink leading-relaxed">
-          <strong class="font-header uppercase tracking-wider text-vermilion block text-[11px] mb-1">Transcript of Advertisement<a href="#fn-2" class="fn-ref">2</a>:</strong>
-          <p class="font-serif italic text-sm mb-2">
-            “WHEREAS Henry Thomas John, of the Parish of Bassalleg, in the County of Monmouth, Yeoman, did, on the 23d Day of January last past, assault, barbarously beat and abuse Mr. William Thomas (Clerk to Mr. Peter Davies, Attorney at Law, at Newport, in the County aforesaid) on the Highway, and take from him one Gun of the Value of Five Shillings : And the said Henry Thomas John having since absconded, whoever apprehends him (so that he may be brought to Justice) and gives Notice thereof to the said Mr. Davies, shall be intitled to a Reward of One Guinea, to be paid by me, PETER DAVIES.<a href="#fn-2" class="fn-ref">2</a>
-          </p>
-          <p class="font-serif italic text-sm">
-            N. B. The said Henry Thomas John is about 35 Years of Age, of a fresh Complexion, wears his own sandy lank Hair, is about five Feet seven Inches high, well-built, and speaks nothing but Welch; having on, when he went away, a Drab-colour’d Surtout Coat, and an ordinary Pair of blue Shag Breeches.”<a href="#fn-2" class="fn-ref">2</a>
-          </p>
-          <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted">
-            <strong>Source:</strong> <em>The Gloucester Journal</em>, 7th February, 1749<a href="#fn-2" class="fn-ref">2</a>.
+        <!-- Collapsible Transcript Accordion -->
+        <details class="group mt-4 bg-white/70 rounded border border-parchment-300 overflow-hidden text-xs">
+          <summary class="flex items-center justify-between p-3 cursor-pointer select-none bg-parchment-100/60 hover:bg-parchment-200/50 transition font-sans font-semibold text-vermilion uppercase tracking-wider text-[11px]">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-vermilion" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              View Full Archival Transcript
+            </span>
+            <svg class="w-4 h-4 text-ink-muted transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="p-3.5 sm:p-4 border-t border-parchment-200 font-sans text-xs text-ink leading-relaxed">
+            <p class="font-serif italic text-sm mb-2">
+              “WHEREAS Henry Thomas John, of the Parish of Bassalleg, in the County of Monmouth, Yeoman, did, on the 23d Day of January last past, assault, barbarously beat and abuse Mr. William Thomas (Clerk to Mr. Peter Davies, Attorney at Law, at Newport, in the County aforesaid) on the Highway, and take from him one Gun of the Value of Five Shillings : And the said Henry Thomas John having since absconded, whoever apprehends him (so that he may be brought to Justice) and gives Notice thereof to the said Mr. Davies, shall be intitled to a Reward of One Guinea, to be paid by me, PETER DAVIES.<a href="#fn-2" class="fn-ref">2</a>
+            </p>
+            <p class="font-serif italic text-sm">
+              N. B. The said Henry Thomas John is about 35 Years of Age, of a fresh Complexion, wears his own sandy lank Hair, is about five Feet seven Inches high, well-built, and speaks nothing but Welch; having on, when he went away, a Drab-colour’d Surtout Coat, and an ordinary Pair of blue Shag Breeches.”<a href="#fn-2" class="fn-ref">2</a>
+            </p>
+            <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted">
+              <strong>Source:</strong> <em>The Gloucester Journal</em>, 7th February, 1749<a href="#fn-2" class="fn-ref">2</a>.
+            </div>
           </div>
-        </div>
+        </details>
+
+        <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
+          <strong class="text-ink font-semibold">Archival Significance:</strong> Beyond documenting rural lawlessness on the pre-turnpike western approach, this advertisement establishes two key historical realities of 1750 Monmouthshire. First, the prosecutor, Attorney Peter Davies, held prominent town burgages on the 1750 plan <strong>(Plots 98 &amp; 102)</strong>. Second, the assailant Henry Thomas John represents the monoglot Welsh-speaking pastoral society of the rural parishes just two miles outside Newport’s bilingual commercial borough.
+        </figcaption>
       </figure>
 
       <!-- Editorial Fleuron Break -->
@@ -384,35 +397,35 @@
 
       <!-- ACT II -->
       <section class="space-y-5 sm:space-y-6">
-      <div class="pb-3 mb-6 border-b border-parchment-300">
-        <div class="flex items-center gap-2.5 mb-1.5">
-          <span class="h-0.5 w-6 bg-vermilion"></span>
-          <span class="font-header text-xs sm:text-sm tracking-[0.2em] text-vermilion font-bold uppercase">Act II</span>
+        <div class="pb-3 mb-6 border-b border-parchment-300">
+          <div class="flex items-center gap-2.5 mb-1.5">
+            <span class="h-0.5 w-6 bg-vermilion"></span>
+            <span class="font-header text-xs sm:text-sm tracking-[0.2em] text-vermilion font-bold uppercase">Act II</span>
+          </div>
+          <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink leading-tight">
+            Over the Ridge to Stow Hill
+          </h2>
         </div>
-        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink leading-tight">
-          Over the Ridge to Stow Hill
-        </h2>
-      </div>
 
         <p>
           Emerging from the wooded hollows of the parish road, Semple felt the slope stiffen as the track skirted along the southern edge of the ancient earthen ring of <span class="fact-tag">Tredegar Hill Fort</span>, passing the quiet stone walls of Nant Coch Farm set back in its fields. At the crest of the hill, the lane met an open fork where a bleached timber guide-post pointed its carved hands along the split—one arm directing travellers down toward Bassaleg and the other toward Risca. It was the very marker post that would later give its name to the <span class="fact-tag">Handpost Inn</span>, standing at a natural vantage where turnpike gates would soon be planted.
         </p>
 
         <!-- Visual Reconstruction: Bassaleg Road towards the Handpost -->
-      <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
-        <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
-          <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Historical Reconstruction • The Bassaleg Road</h3>
-          <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">c. 1750 Landscape</span>
-        </div>
+        <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
+          <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
+            <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Historical Reconstruction • The Bassaleg Road</h3>
+            <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">c. 1750 Landscape</span>
+          </div>
 
-        <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Bassaleg-Road-1750.jpg', 'Visual Reconstruction: Bassaleg Road climbing towards the Handpost with Nant Coch on the left, c. 1750')">
-          <img src="Bassaleg-Road-1750.jpg" alt="1750 reconstruction of Bassaleg Road looking towards the Handpost" class="w-full max-h-[500px] object-cover mx-auto group-hover:scale-[1.01] transition-transform duration-200">
-        </div>
+          <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Bassaleg-Road-1750.jpg', 'Visual Reconstruction: Bassaleg Road climbing towards the Handpost with Nant Coch on the left, c. 1750')">
+            <img src="Bassaleg-Road-1750.jpg" alt="1750 reconstruction of Bassaleg Road looking towards the Handpost" class="w-full max-h-[500px] object-cover mx-auto group-hover:scale-[1.01] transition-transform duration-200">
+          </div>
 
-        <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
-          <strong class="text-ink font-semibold">Landscape Comparison:</strong> A reconstruction showing how present-day Bassaleg Road would have appeared to a traveller climbing northeast toward the Handpost junction. On the left sits the isolated stone homestead of <span class="text-ink font-medium">Nant Coch</span> set back within its fields, while to the right the road skirts the ancient, tree-crowned slopes below the Tredegar Hill Fort earthworks.
-        </figcaption>
-      </figure>
+          <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
+            <strong class="text-ink font-semibold">Landscape Comparison:</strong> A reconstruction showing how present-day Bassaleg Road would have appeared to a traveller climbing northeast toward the Handpost junction. On the left sits the isolated stone homestead of <span class="text-ink font-medium">Nant Coch</span> set back within its fields, while to the right the road skirts the ancient, tree-crowned slopes below the Tredegar Hill Fort earthworks.
+          </figcaption>
+        </figure>
 
         <p>
           Turning along the level ridge of Stow Hill, Semple saw the massive square stone tower of <span class="fact-tag">St Woolos Church</span> rise against the sky. It was a venerable church with pre-Norman origins, standing solitary on the high rural skyline rather than hemmed in by city terraces. Here, on the outer borough bounds, sat the Stow Manor Pound for stray cattle alongside the rectorial tithe barn. Passing the boundary markers into the borough proper, he began the descent down Stow Hill over loose red sandstone gravel.
@@ -450,50 +463,72 @@
 
       <!-- Exhibit: FreeSchool.jpg -->
       <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
-        <div class="mb-3 border-b border-parchment-300 pb-2">
+        <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
           <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">The Free-School-House Advertised Void of a Master</h3>
+          <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">1748 Primary Clipping</span>
         </div>
 
         <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('FreeSchool.jpg', 'The Free-School-House Advertised Void — Gloucester Journal, 15th March, 1748')">
           <img src="FreeSchool.jpg" alt="1748 Free School Advert" class="w-full max-h-80 object-contain mx-auto group-hover:scale-[1.01] transition-transform">
         </div>
 
-        <div class="mt-4 p-3.5 sm:p-4 bg-white/70 rounded border border-parchment-300 font-sans text-xs text-ink leading-relaxed">
-          <strong class="font-header uppercase tracking-wider text-vermilion block text-[11px] mb-1">Transcript of Advertisement<a href="#fn-3" class="fn-ref">3</a>:</strong>
-          <p class="font-serif italic text-sm mb-2">
-            “NEWPORT, March 12. WHEREAS the FREE-SCHOOL-HOUSE, Rent-free, with a good Garden adjoining, in Newport, in the County of Monmouth, is, together with the School, now void of a Master : Any Person of Character and good Behaviour, and being also well-vers’d in Grammar and the Classicks, may be immediately put in Possession thereof.<a href="#fn-3" class="fn-ref">3</a>
-          </p>
-          <p class="font-serif italic text-sm">
-            N. B. As the late Master quitted the School but the 5th Instant, being promoted in the University of Oxford, having, then, a full School, besides teaching in private Families, it is probable, if Application be soon made, that all those Encouragements may attend the Gentleman that takes to the School.”<a href="#fn-3" class="fn-ref">3</a>
-          </p>
-          <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted">
-            <strong>Source:</strong> <em>The Gloucester Journal</em>, 15th March, 1748<a href="#fn-3" class="fn-ref">3</a>.
+        <!-- Collapsible Transcript Accordion -->
+        <details class="group mt-4 bg-white/70 rounded border border-parchment-300 overflow-hidden text-xs">
+          <summary class="flex items-center justify-between p-3 cursor-pointer select-none bg-parchment-100/60 hover:bg-parchment-200/50 transition font-sans font-semibold text-vermilion uppercase tracking-wider text-[11px]">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-vermilion" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              View Full Archival Transcript
+            </span>
+            <svg class="w-4 h-4 text-ink-muted transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="p-3.5 sm:p-4 border-t border-parchment-200 font-sans text-xs text-ink leading-relaxed">
+            <p class="font-serif italic text-sm mb-2">
+              “NEWPORT, March 12. WHEREAS the FREE-SCHOOL-HOUSE, Rent-free, with a good Garden adjoining, in Newport, in the County of Monmouth, is, together with the School, now void of a Master : Any Person of Character and good Behaviour, and being also well-vers’d in Grammar and the Classicks, may be immediately put in Possession thereof.<a href="#fn-3" class="fn-ref">3</a>
+            </p>
+            <p class="font-serif italic text-sm">
+              N. B. As the late Master quitted the School but the 5th Instant, being promoted in the University of Oxford, having, then, a full School, besides teaching in private Families, it is probable, if Application be soon made, that all those Encouragements may attend the Gentleman that takes to the School.”<a href="#fn-3" class="fn-ref">3</a>
+            </p>
+            <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted">
+              <strong>Source:</strong> <em>The Gloucester Journal</em>, 15th March, 1748<a href="#fn-3" class="fn-ref">3</a>.
+            </div>
           </div>
-        </div>
+        </details>
+
+        <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
+          <strong class="text-ink font-semibold">Archival Significance:</strong> Identifies <strong>Plot 70 (“The School House”)</strong> on the 1750 plan, demonstrating the academic life of the pre-industrial borough. Endowed in 1607 by Alderman William Williams, this grammar school provided classical instruction for sons of burgesses and gentry before the site was converted into Newport's parish workhouse in 1783. Today, the location lies beneath a tarmac car park below Havelock Street.
+        </figcaption>
       </figure>
 
-      <!-- Exhibit: Dumayne.jpg -->
+      <!-- Exhibit: Commercial Premises & Trade Tenancies (Thomas Dumayne) -->
       <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
-        <div class="mb-3 border-b border-parchment-300 pb-2">
-          <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Commercial Premises & Trade Tenancies</h3>
+        <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Commercial Premises &amp; Trade Tenancies</h3>
+          <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">1750 Primary Clipping</span>
         </div>
 
-        <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Dumayne.jpg', 'Commercial Tenancy Notice — Gloucester Journal, 10th October, 1752')">
-          <img src="Dumayne.jpg" alt="18th Century Commercial Advert" class="w-full max-h-80 object-contain mx-auto group-hover:scale-[1.01] transition-transform">
+        <div class="overflow-hidden rounded border border-parchment-300 bg-white p-3 cursor-pointer group" onclick="openLightbox('Dumayne.jpg', 'Notice to let a commodious house, malthouse, stable, and orchard in the middle of Newport, rented by Thomas Dumayne, Esq., Mayor')">
+          <img src="Dumayne.jpg" alt="1750 advertisement to let a house and malthouse rented by Mayor Thomas Dumayne" class="w-full max-h-[380px] object-contain mx-auto group-hover:scale-[1.01] transition-transform duration-200">
         </div>
 
-        <div class="mt-4 p-3.5 sm:p-4 bg-white/70 rounded border border-parchment-300 font-sans text-xs text-ink leading-relaxed">
-          <strong class="font-header uppercase tracking-wider text-vermilion block text-[11px] mb-1">Transcript of Advertisement<a href="#fn-4" class="fn-ref">4</a>:</strong>
-          <p class="font-serif italic text-sm mb-2">
-            “To be LETT, And Entered upon at Christmas or Lady-Day next, A Very good DWELLING-HOUSE, in the Parish of Horsley, in the County of Gloucester, wherein Mr. Edward Webb lately liv’d, with all Conveniencies fit for a Clothier, and with or without Pasture Land.<a href="#fn-4" class="fn-ref">4</a>
-          </p>
-          <p class="font-serif italic text-sm">
-            Likewise a FULLING-MILL, contiguous to the said House, consisting of Two Stocks and a Gigg-Mill, with a Cloth-Press, and Tenters, &c. all in good Repair. For further Particulars enquire of Paul Castelman, Esq; at Horsley, or of William Jones, at the said House.”<a href="#fn-4" class="fn-ref">4</a>
-          </p>
-          <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted">
-            <strong>Source:</strong> <em>The Gloucester Journal</em>, 10th October, 1752<a href="#fn-4" class="fn-ref">4</a>.
+        <!-- Collapsible Transcript Accordion -->
+        <details class="group mt-4 bg-white/70 rounded border border-parchment-300 overflow-hidden text-xs">
+          <summary class="flex items-center justify-between p-3 cursor-pointer select-none bg-parchment-100/60 hover:bg-parchment-200/50 transition font-sans font-semibold text-vermilion uppercase tracking-wider text-[11px]">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-vermilion" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              View Full Archival Transcript
+            </span>
+            <svg class="w-4 h-4 text-ink-muted transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="p-3.5 sm:p-4 border-t border-parchment-200 font-serif italic text-sm text-ink leading-relaxed">
+            <p>
+              “To be Lett, and Entered upon at May next, A very good commodious <span class="font-sans not-italic text-xs tracking-wider uppercase">House</span>, Situate in the Middle of the Town of Newport, in the County of Monmouth, and now rented by <span class="font-sans not-italic text-xs tracking-wider uppercase">Thomas Dumayne</span>, Eſq; Mayor of the ſaid Town; with a good Malt-Houſe thereto belonging, where may be made Yearly between 3 and 4000 Buſhels of Malt; together with a Stable, Garden, and an Orchard of about an Acre of Land, with all Manner of Fruit-Trees. For farther Particulars enquire of Charles Griffiths, of Laneravon, in the ſaid County, Gent.”
+            </p>
           </div>
-        </div>
+        </details>
+
+        <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
+          <strong class="text-ink font-semibold">Archival Significance:</strong> Corresponding directly with <strong>Plot 57 (“Mr Dumain”)</strong> on the 1750 Town Plan, this notice illustrates that Newport’s municipal leaders were active commercial maltsters. The property combines domestic quarters with an industrial malthouse producing up to 4,000 bushels annually, complete with town-centre stabling and a productive one-acre orchard stretching behind the burgage frontage.
+        </figcaption>
       </figure>
 
       <section class="space-y-5 sm:space-y-6">
@@ -557,23 +592,37 @@
 
       <!-- Exhibit: Cock-Match.jpg -->
       <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
-        <div class="mb-3 border-b border-parchment-300 pb-2">
+        <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
           <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">A Cock-Match at The King’s Head</h3>
+          <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">1750 Primary Clipping</span>
         </div>
 
         <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Cock-Match.jpg', 'A Cock-Match at The King’s Head — Gloucester Journal, 12th June, 1750')">
           <img src="Cock-Match.jpg" alt="1750 Cock-Match Advert" class="w-full max-h-80 object-contain mx-auto group-hover:scale-[1.01] transition-transform duration-200">
         </div>
 
-        <div class="mt-4 p-3.5 sm:p-4 bg-white/70 rounded border border-parchment-300 font-sans text-xs text-ink leading-relaxed">
-          <strong class="font-header uppercase tracking-wider text-vermilion block text-[11px] mb-1">Transcript of Advertisement<a href="#fn-5" class="fn-ref">5</a>:</strong>
-          <p class="font-serif italic text-sm mb-2">
-            “A COCK-MATCH, TO be Fought at the King’s-Head in Newport, Monmouthshire, between the Gentlemen of that County, and the Gentlemen of Glamorganshire : To produce 31 Cocks on each Side, in the Main, for Three Guineas a Battle, and Sixty Guineas the Odd Battle ; and 20 Cocks on each Side, in the Bye’s, for One Guinea a Battle : To weigh on the 18th of June instant, and fight the three following Days.”<a href="#fn-5" class="fn-ref">5</a>
-          </p>
-          <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted">
-            <strong>Source:</strong> <em>The Gloucester Journal</em>, 12th June, 1750<a href="#fn-5" class="fn-ref">5</a>.
+        <!-- Collapsible Transcript Accordion -->
+        <details class="group mt-4 bg-white/70 rounded border border-parchment-300 overflow-hidden text-xs">
+          <summary class="flex items-center justify-between p-3 cursor-pointer select-none bg-parchment-100/60 hover:bg-parchment-200/50 transition font-sans font-semibold text-vermilion uppercase tracking-wider text-[11px]">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-vermilion" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              View Full Archival Transcript
+            </span>
+            <svg class="w-4 h-4 text-ink-muted transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="p-3.5 sm:p-4 border-t border-parchment-200 font-sans text-xs text-ink leading-relaxed">
+            <p class="font-serif italic text-sm mb-2">
+              “A COCK-MATCH, TO be Fought at the King’s-Head in Newport, Monmouthshire, between the Gentlemen of that County, and the Gentlemen of Glamorganshire : To produce 31 Cocks on each Side, in the Main, for Three Guineas a Battle, and Sixty Guineas the Odd Battle ; and 20 Cocks on each Side, in the Bye’s, for One Guinea a Battle : To weigh on the 18th of June instant, and fight the three following Days.”<a href="#fn-5" class="fn-ref">5</a>
+            </p>
+            <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted">
+              <strong>Source:</strong> <em>The Gloucester Journal</em>, 12th June, 1750<a href="#fn-5" class="fn-ref">5</a>.
+            </div>
           </div>
-        </div>
+        </details>
+
+        <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
+          <strong class="text-ink font-semibold">Archival Significance:</strong> Corresponds with <strong>Plot 108 (“Kings Head &amp; House djg”)</strong>, the pre-eminent coaching inn on the Morgan of Tredegar estate. Cockfighting was the premier gentry sporting attraction of the 18th century; the enormous purses advertised—totaling over 150 guineas across four days—reveal how elite county rivalries between Glamorgan and Monmouthshire injected massive sums of cash into Newport’s hostelry and tavern trade.
+        </figcaption>
       </figure>
 
       <!-- ACT IV -->
@@ -595,23 +644,37 @@
 
       <!-- Exhibit: ShopToLett.jpg -->
       <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
-        <div class="mb-3 border-b border-parchment-300 pb-2">
+        <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
           <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">A Convenient House and Shop with Meadow-Ground</h3>
+          <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">1750 Primary Clipping</span>
         </div>
 
         <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('ShopToLett.jpg', 'A Convenient House and Shop to be Lett — Gloucester Journal, 4th December, 1750')">
           <img src="ShopToLett.jpg" alt="1750 Shop To Lett Notice" class="w-full max-h-80 object-contain mx-auto group-hover:scale-[1.01] transition-transform duration-200">
         </div>
 
-        <div class="mt-4 p-3.5 sm:p-4 bg-white/70 rounded border border-parchment-300 font-sans text-xs text-ink leading-relaxed">
-          <strong class="font-header uppercase tracking-wider text-vermilion block text-[11px] mb-1">Transcript of Advertisement<a href="#fn-6" class="fn-ref">6</a>:</strong>
-          <p class="font-serif italic text-sm mb-2">
-            “To be LETT, In the Town of Newport, in the County of Monmouth, A Convenient HOUSE and SHOP, And also Twelve ACRES of good Meadow-Ground. Enquire of Mr. John Thomas, in Cardiffe.”<a href="#fn-6" class="fn-ref">6</a>
-          </p>
-          <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted">
-            <strong>Source:</strong> <em>The Gloucester Journal</em>, 4th December, 1750<a href="#fn-6" class="fn-ref">6</a>.
+        <!-- Collapsible Transcript Accordion -->
+        <details class="group mt-4 bg-white/70 rounded border border-parchment-300 overflow-hidden text-xs">
+          <summary class="flex items-center justify-between p-3 cursor-pointer select-none bg-parchment-100/60 hover:bg-parchment-200/50 transition font-sans font-semibold text-vermilion uppercase tracking-wider text-[11px]">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-vermilion" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              View Full Archival Transcript
+            </span>
+            <svg class="w-4 h-4 text-ink-muted transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </summary>
+          <div class="p-3.5 sm:p-4 border-t border-parchment-200 font-sans text-xs text-ink leading-relaxed">
+            <p class="font-serif italic text-sm mb-2">
+              “To be LETT, In the Town of Newport, in the County of Monmouth, A Convenient HOUSE and SHOP, And also Twelve ACRES of good Meadow-Ground. Enquire of Mr. John Thomas, in Cardiffe.”<a href="#fn-6" class="fn-ref">6</a>
+            </p>
+            <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted">
+              <strong>Source:</strong> <em>The Gloucester Journal</em>, 4th December, 1750<a href="#fn-6" class="fn-ref">6</a>.
+            </div>
           </div>
-        </div>
+        </details>
+
+        <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
+          <strong class="text-ink font-semibold">Archival Significance:</strong> Correlates with <strong>Plot 110 (“Mr John Thomas”)</strong> situated strategically at the northern funnel of High Street where the roadway branched towards the river bridge and Castle. The holding exemplifies the dual agro-commercial economy of 18th-century Newport, combining retail premises on the main thoroughfare with twelve acres of valuable alluvial marsh grazing on the Caldicot or Wentloog levels.
+        </figcaption>
       </figure>
 
       <section class="space-y-5 sm:space-y-6">
@@ -665,20 +728,20 @@
         </p>
 
         <!-- Visual Reconstruction: Old Malpas Road toward St Mary's Church -->
-      <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
-        <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
-          <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Historical Reconstruction • The Old Malpas Road</h3>
-          <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">c. 1750 Landscape</span>
-        </div>
+        <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
+          <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
+            <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Historical Reconstruction • The Old Malpas Road</h3>
+            <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">c. 1750 Landscape</span>
+          </div>
 
-        <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Old-Malpas-Road-1750.jpg', 'Visual Reconstruction: The old road between Crindau and Malpas hugging the higher contour above the waterlogged marsh flats, looking toward St Mary’s Church, c. 1750')">
-          <img src="Old-Malpas-Road-1750.jpg" alt="1750 reconstruction of the ancient Malpas Road winding towards St Mary's Church" class="w-full max-h-[500px] object-cover mx-auto group-hover:scale-[1.01] transition-transform duration-200">
-        </div>
+          <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Old-Malpas-Road-1750.jpg', 'Visual Reconstruction: The old road between Crindau and Malpas hugging the higher contour above the waterlogged marsh flats, looking toward St Mary’s Church, c. 1750')">
+            <img src="Old-Malpas-Road-1750.jpg" alt="1750 reconstruction of the ancient Malpas Road winding towards St Mary's Church" class="w-full max-h-[500px] object-cover mx-auto group-hover:scale-[1.01] transition-transform duration-200">
+          </div>
 
-        <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
-          <strong class="text-ink font-semibold">Landscape Comparison:</strong> An artistic reconstruction depicting the original course of the road between Crindau House and St Mary’s Church. Rather than descending into the boggy tidal flats of the Usk marshes and Malpas Brook, the ancient trackway hugs the rising hillside beneath modern Brynglas, offering a firm, gravelled contour path toward the venerable stone tower of Malpas Church on the horizon.
-        </figcaption>
-      </figure>
+          <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
+            <strong class="text-ink font-semibold">Landscape Comparison:</strong> An artistic reconstruction depicting the original course of the road between Crindau House and St Mary’s Church. Rather than descending into the boggy tidal flats of the Usk marshes and Malpas Brook, the ancient trackway hugs the rising hillside beneath modern Brynglas, offering a firm, gravelled contour path toward the venerable stone tower of Malpas Church on the horizon.
+          </figcaption>
+        </figure>
 
         <p>
           The track brought him into the quiet agricultural hamlet of Malpas. St Mary’s Church stood on its knoll, a small, venerable stone chapel preserving the round arches of its original 12th-century Cluniac priory cell, long before Victorian restorers swept the medieval fabric away to rebuild it in the 1840s.
@@ -704,58 +767,61 @@
         </p>
       </section>
 
-      <!-- Exhibit: 1750Map.jpg with Interactive Zoom Controls -->
       <!-- Exhibit: 1750Map.jpg with Pre-Zoomed Town Focus & Presets -->
-    <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
-      <div class="flex flex-col md:flex-row md:items-center justify-between mb-3 border-b border-parchment-300 pb-2 gap-2">
-        <div>
-          <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Plan of the Town and Borough of Newport (c. 1750)</h3>
-          <p class="font-sans text-[11px] text-ink-muted">Pre-zoomed on the borough core. Drag to explore or use area presets.</p>
-        </div>
-        
-        <!-- Controls Bar -->
-        <div class="flex flex-wrap items-center gap-1.5 font-sans text-xs">
-          <!-- Location Jump Presets -->
-          <div class="inline-flex bg-white border border-parchment-300 rounded overflow-hidden shadow-sm">
-            <button onclick="focusMap('town')" class="px-2 py-1 text-[11px] hover:bg-parchment-100 font-medium text-ink border-r border-parchment-200">High St</button>
-            <button onclick="focusMap('stow')" class="px-2 py-1 text-[11px] hover:bg-parchment-100 font-medium text-ink border-r border-parchment-200">Stow Hill</button>
-            <button onclick="focusMap('castle')" class="px-2 py-1 text-[11px] hover:bg-parchment-100 font-medium text-ink border-r border-parchment-200">Castle / Mill</button>
-            <button onclick="focusMap('full')" class="px-2 py-1 text-[11px] hover:bg-parchment-100 font-medium text-ink-muted">Full Map</button>
+      <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-3 border-b border-parchment-300 pb-2 gap-2">
+          <div>
+            <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Plan of the Town and Borough of Newport (c. 1750)</h3>
+            <p class="font-sans text-[11px] text-ink-muted">Pre-zoomed on the borough core. Drag to explore or use area presets.</p>
           </div>
+          
+          <!-- Controls Bar -->
+          <div class="flex flex-wrap items-center gap-1.5 font-sans text-xs">
+            <!-- Location Jump Presets -->
+            <div class="inline-flex bg-white border border-parchment-300 rounded overflow-hidden shadow-sm">
+              <button onclick="focusMap('town')" class="px-2 py-1 text-[11px] hover:bg-parchment-100 font-medium text-ink border-r border-parchment-200">High St</button>
+              <button onclick="focusMap('stow')" class="px-2 py-1 text-[11px] hover:bg-parchment-100 font-medium text-ink border-r border-parchment-200">Stow Hill</button>
+              <button onclick="focusMap('castle')" class="px-2 py-1 text-[11px] hover:bg-parchment-100 font-medium text-ink border-r border-parchment-200">Castle / Mill</button>
+              <button onclick="focusMap('full')" class="px-2 py-1 text-[11px] hover:bg-parchment-100 font-medium text-ink-muted">Full Map</button>
+            </div>
 
-          <!-- Zoom In / Out -->
-          <div class="inline-flex items-center bg-white border border-parchment-300 rounded shadow-sm px-1.5 py-0.5">
-            <button onclick="zoomMap(0.3)" class="px-2 py-0.5 hover:bg-parchment-100 rounded text-ink font-bold" title="Zoom In">+</button>
-            <button onclick="zoomMap(-0.3)" class="px-2 py-0.5 hover:bg-parchment-100 rounded text-ink font-bold border-l border-parchment-200" title="Zoom Out">−</button>
-            <span id="zoom-level" class="text-ink-muted ml-1.5 text-[10px] font-mono min-w-[36px] text-center">185%</span>
+            <!-- Zoom In / Out -->
+            <div class="inline-flex items-center bg-white border border-parchment-300 rounded shadow-sm px-1.5 py-0.5">
+              <button onclick="zoomMap(0.3)" class="px-2 py-0.5 hover:bg-parchment-100 rounded text-ink font-bold" title="Zoom In">+</button>
+              <button onclick="zoomMap(-0.3)" class="px-2 py-0.5 hover:bg-parchment-100 rounded text-ink font-bold border-l border-parchment-200" title="Zoom Out">−</button>
+              <span id="zoom-level" class="text-ink-muted ml-1.5 text-[10px] font-mono min-w-[36px] text-center">185%</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Interactive Pan / Zoom Viewport (Taller & fills the space) -->
-      <div id="map-container" class="map-pan-container overflow-hidden rounded border border-parchment-300 bg-[#e8e2d5] relative h-[560px] sm:h-[680px]">
-        <div id="map-target" class="map-zoom-target absolute inset-0 flex items-center justify-center">
-          <img id="map-img" src="1750Map.jpg" alt="1750 Newport Map" class="w-auto h-full max-w-none select-none pointer-events-none drop-shadow-md">
+        <!-- Interactive Pan / Zoom Viewport (Taller & fills the space) -->
+        <div id="map-container" class="map-pan-container overflow-hidden rounded border border-parchment-300 bg-[#e8e2d5] relative h-[560px] sm:h-[680px]">
+          <div id="map-target" class="map-zoom-target absolute inset-0 flex items-center justify-center">
+            <img id="map-img" src="1750Map.jpg" alt="1750 Newport Map" class="w-auto h-full max-w-none select-none pointer-events-none drop-shadow-md">
+          </div>
+          
+          <!-- Floating Hint Overlay -->
+          <div class="absolute bottom-3 left-3 bg-black/65 backdrop-blur-sm text-parchment-100 text-[11px] font-sans px-2.5 py-1 rounded flex items-center gap-1.5 pointer-events-none shadow">
+            <svg class="w-3.5 h-3.5 text-antiqueGold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+            <span>Click &amp; drag to pan • Mousewheel / pinch to zoom</span>
+          </div>
         </div>
-        
-        <!-- Floating Hint Overlay -->
-        <div class="absolute bottom-3 left-3 bg-black/65 backdrop-blur-sm text-parchment-100 text-[11px] font-sans px-2.5 py-1 rounded flex items-center gap-1.5 pointer-events-none shadow">
-          <svg class="w-3.5 h-3.5 text-antiqueGold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
-          <span>Click & drag to pan • Mousewheel / pinch to zoom</span>
-        </div>
-      </div>
 
-      <div class="mt-4 p-3.5 sm:p-4 bg-white/70 rounded border border-parchment-300 font-sans text-xs text-ink leading-relaxed">
-        <strong class="font-header uppercase tracking-wider text-vermilion block text-[11px] mb-1">Archival Cartography Note<a href="#fn-7" class="fn-ref">7</a>:</strong>
-        <p class="font-serif italic text-sm mb-2">
-          “PLAN of the Town & Borough of NEWPORT upon a Scale of 100 Perch to an Inch / Copied from an Ancient Map (about the year 1750) shewing the Proprietors of the respective property with the Borough Boundaries.”<a href="#fn-7" class="fn-ref">7</a>
-        </p>
-        <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-          <span><strong>Source:</strong> Preserved in the <em>Newport Past</em> historical archives<a href="#fn-7" class="fn-ref">7</a>.</span>
-          <button onclick="openLightbox('1750Map.jpg', 'Plan of the Town and Borough of Newport (c. 1750)')" class="text-vermilion hover:underline text-left sm:text-right font-medium">Open in Fullscreen Modal ↗</button>
+        <div class="mt-4 p-3.5 sm:p-4 bg-white/70 rounded border border-parchment-300 font-sans text-xs text-ink leading-relaxed">
+          <strong class="font-header uppercase tracking-wider text-vermilion block text-[11px] mb-1">Archival Cartography Note<a href="#fn-7" class="fn-ref">7</a>:</strong>
+          <p class="font-serif italic text-sm mb-2">
+            “PLAN of the Town &amp; Borough of NEWPORT upon a Scale of 100 Perch to an Inch / Copied from an Ancient Map (about the year 1750) shewing the Proprietors of the respective property with the Borough Boundaries.”<a href="#fn-7" class="fn-ref">7</a>
+          </p>
+          <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+            <span><strong>Source:</strong> Preserved in the <em>Newport Past</em> historical archives<a href="#fn-7" class="fn-ref">7</a>.</span>
+            <button onclick="openLightbox('1750Map.jpg', 'Plan of the Town and Borough of Newport (c. 1750)')" class="text-vermilion hover:underline text-left sm:text-right font-medium">Open in Fullscreen Modal ↗</button>
+          </div>
         </div>
-      </div>
-    </figure>
+
+        <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
+          <strong class="text-ink font-semibold">Archival Significance:</strong> This town survey represents the earliest surviving detailed cartographic snapshot of Newport's urban topography. Prepared just before the turnpike trusts and the Industrial Revolution altered the valley floor, the plan meticulously maps out the medieval burgage boundaries along High Street and Stow Hill, capturing the exact proprietary distribution between the Morgan family of Tredegar, the Duke of Beaufort, and independent borough freeholders.
+        </figcaption>
+      </figure>
 
     </article>
 
@@ -834,7 +900,7 @@
     <section class="max-w-5xl mx-auto px-4 sm:px-6 mb-16 pt-8 border-t border-parchment-300 font-sans text-xs text-ink-muted leading-relaxed">
       <div class="flex items-center gap-2 mb-4">
         <span class="w-2 h-2 rounded-full bg-vermilion"></span>
-        <h4 class="font-header text-xs uppercase tracking-widest text-vermilion font-bold">Notes & Archival References</h4>
+        <h4 class="font-header text-xs uppercase tracking-widest text-vermilion font-bold">Notes &amp; Archival References</h4>
       </div>
       <ol class="space-y-3 list-decimal pl-5">
         <li id="fn-1" class="pl-1">
@@ -847,7 +913,7 @@
           <strong>Grammar School Vacancy:</strong> <em>The Gloucester Journal</em>, 15th March, 1748. Notice advertising the Free-School-House, rent-free with adjoining garden. <a href="#ref-3" class="text-vermilion ml-1" title="Back to text">↩</a>
         </li>
         <li id="fn-4" class="pl-1">
-          <strong>Commercial Tenancy & Trade:</strong> <em>The Gloucester Journal</em>, 10th October, 1752. Notice regarding clothier conveniences and fulling-mill premises. <a href="#article-body" class="text-vermilion ml-1" title="Back to text">↩</a>
+          <strong>Commercial Tenancy &amp; Trade:</strong> <em>The Gloucester Journal</em>, 10th October, 1752. Notice regarding clothier conveniences and fulling-mill premises. <a href="#article-body" class="text-vermilion ml-1" title="Back to text">↩</a>
         </li>
         <li id="fn-5" class="pl-1">
           <strong>King's Head Cockfight:</strong> <em>The Gloucester Journal</em>, 12th June, 1750. Notice for the cock-match between the Gentlemen of Monmouthshire and Glamorganshire. <a href="#ref-5" class="text-vermilion ml-1" title="Back to text">↩</a>
@@ -856,7 +922,7 @@
           <strong>House and Shop to Let:</strong> <em>The Gloucester Journal</em>, 4th December, 1750. Notice placed by Mr John Thomas in Cardiffe for premises in Newport. <a href="#ref-6" class="text-vermilion ml-1" title="Back to text">↩</a>
         </li>
         <li id="fn-7" class="pl-1">
-          <strong>Town Plan & Borough Survey:</strong> <em>Plan of the Town & Borough of Newport</em> (copied from an ancient map c. 1750), preserved in Newport Reference Library and transcribed by <em>Newport Past</em> (ref: m1750_key). <a href="#article-body" class="text-vermilion ml-1" title="Back to text">↩</a>
+          <strong>Town Plan &amp; Borough Survey:</strong> <em>Plan of the Town &amp; Borough of Newport</em> (copied from an ancient map c. 1750), preserved in Newport Reference Library and transcribed by <em>Newport Past</em> (ref: m1750_key). <a href="#article-body" class="text-vermilion ml-1" title="Back to text">↩</a>
         </li>
       </ol>
     </section>
@@ -892,7 +958,6 @@
   </div>
 
   <!-- JavaScript Implementation -->
- <!-- JavaScript Implementation -->
   <script>
     // Complete 113 Burgage Plots from Newport Past Key
     const rawPlotsData = [
