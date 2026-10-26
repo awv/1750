@@ -272,14 +272,29 @@
         Walking through mid-18th-century Newport: an unhurried journey from the Rumney crossing through the crowded High Street to the quayside sloops of Caerleon in the summer of 1750.
       </p>
 
-      <!-- Context Callout -->
-      <div class="bg-parchment-100 border-l-4 border-antiqueGold p-4 sm:p-5 text-left rounded-r-md text-xs sm:text-sm font-sans text-ink-light leading-relaxed">
-        <strong class="font-header uppercase tracking-wider text-antiqueGold-dark block text-xs mb-1">Topographical Guide for Modern Residents</strong>
-        In 1750, Newport was not yet an industrial port city; there were no docks, no Monmouthshire Canal, and no railway viaducts. It was a compact market borough and river port of just over 1,000 inhabitants. This narrative reconstructs what a pedestrian encountered on the ancient parish roads eight years prior to the First Monmouthshire Turnpike Act of 1758.
-      </div>
+      <!-- Collapsible Context Accordion -->
+      <details class="group max-w-2xl mx-auto mt-12 mb-6 sm:mt-16 sm:mb-8 bg-parchment-100/70 hover:bg-parchment-100 border border-parchment-300 rounded-md transition text-left">
+        <summary class="p-3 sm:px-4 cursor-pointer select-none flex items-center justify-between font-sans text-xs text-ink-muted">
+          <div class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-antiqueGold"></span>
+            <strong class="font-header tracking-wider uppercase text-antiqueGold-dark text-[11px]">Historical Note:</strong>
+            <span class="hidden sm:inline italic text-ink-light font-serif">On the sources and 1750 topography…</span>
+          </div>
+          <span class="text-[11px] font-sans text-vermilion group-open:hidden flex items-center gap-1 font-medium">
+            Read note <span aria-hidden="true">↓</span>
+          </span>
+          <span class="text-[11px] font-sans text-ink-muted hidden group-open:inline">
+            Close <span aria-hidden="true">↑</span>
+          </span>
+        </summary>
+        <div class="px-4 pb-4 pt-1 border-t border-parchment-200/60 font-sans text-xs text-ink-light leading-relaxed">
+          In 1750, Newport was not yet an industrial port city; there were no docks, no Monmouthshire Canal, and no railway. It was a compact market town and river port of under 1,000 inhabitants. This narrative reconstructs what a pedestrian may have encountered on the ancient parish roads eight years prior to the First Monmouthshire Turnpike Act of 1758. The route is based on a description of a route from the 1758 Turnpike Act as well as the 1770 version. Other elements of the article are based on early maps and newspaper adverts.
+        </div>
+      </details>
+
     </section>
 
-<!-- Narrative Article Body -->
+    <!-- Narrative Article Body -->
     <article id="article-body" class="max-w-3xl mx-auto px-4 sm:px-6 font-serif text-lg sm:text-xl text-ink leading-relaxed space-y-8 sm:space-y-9">
 
       <!-- ACT I -->
@@ -294,28 +309,42 @@
           </h2>
         </div>
 
-        <p class="drop-cap">
-          His name was Alexander Semple, though along the border valleys of Monmouthshire no one called him that. To the farm wives of Wentloog, the hostlers at the coaching gates, and the magistrates sitting in petty sessions, he was simply 
-          <span class="pepys-entry" tabindex="0">
-            <span class="fact-tag">“the Scotchman.”</span>
-            <span class="pepys-popover">
-              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Trade Classification</strong>
-              An 18th-century commercial term across Britain for travelling tally-drapers selling cloth, linens, and haberdashery on scheduled credit circuits, regardless of actual nationality.
-            </span>
-          </span>
-        </p>
+        <!-- Asymmetrical Intro with Float Portrait (Option 1 Breakout compatible on small/large screens) -->
+        <div class="relative flow-root">
+          <!-- Portrait Pullout Card -->
+          <div class="w-full sm:w-[260px] md:w-[280px] sm:float-right sm:ml-6 sm:mb-4 mb-6 p-3 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
+            <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('semple.jpg', 'Alexander Semple, the “Scotchman” — Contemporary 18th-century portrait')">
+              <img src="semple.jpg" alt="18th-century portrait of Alexander Semple, the Scotchman" class="w-full object-cover group-hover:scale-[1.01] transition-transform duration-200">
+            </div>
+            <div class="mt-2 text-center">
+              <span class="font-display font-bold text-ink text-sm block">Alexander Semple</span>
+              <span class="font-sans text-[10px] text-ink-muted uppercase tracking-wider block mt-0.5">“The Scotchman” (c. 1750)</span>
+            </div>
+          </div>
 
-        <p>
-          Semple was forty-two years old, hailing originally from the 
-          <span class="pepys-entry" tabindex="0">
-            <span class="fact-tag">Upper Ward of Lanarkshire</span>
-            <span class="pepys-popover">
-              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Scottish Lowlands</strong>
-              The southern upland territory around Biggar and Lanark, a historic heartland for itinerant weavers, packmen, and linen merchants.
+          <p class="drop-cap">
+            His name was Alexander Semple, though along the border valleys of Monmouthshire no one called him that. To the farm wives of Wentloog, the hostlers at the coaching gates, and the magistrates sitting in petty sessions, he was simply 
+            <span class="pepys-entry" tabindex="0">
+              <span class="fact-tag">“the Scotchman.”</span>
+              <span class="pepys-popover">
+                <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Trade Classification</strong>
+                An 18th-century commercial term across Britain for travelling tally-drapers selling cloth, linens, and haberdashery on scheduled credit circuits, regardless of actual nationality.
+              </span>
             </span>
-          </span>. 
-          He had spent eighteen years living out of an oiled canvas pack strapped across his chest and shoulders, working a seasonal tallyman’s circuit through South Wales. His hair was iron-grey, his knees hardened by miles of sunken parish tracks, and his right hand rarely left his <em class="font-serif italic">ellwand</em>—a smoothed ash measuring rod, precisely forty-five inches long, banded with brass at either end. To the women at cottage doorways, it was the honest measure by which he cut lengths of Irish linen, cambric, and calico; to Semple, walking alone down solitary hollow-ways, it was a heavy defensive cudgel against highway footpads and farm mastiffs.
-        </p>
+          </p>
+
+          <p>
+            Semple was forty-two years old, hailing originally from the 
+            <span class="pepys-entry" tabindex="0">
+              <span class="fact-tag">Upper Ward of Lanarkshire</span>
+              <span class="pepys-popover">
+                <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Scottish Lowlands</strong>
+                The southern upland territory around Biggar and Lanark, a historic heartland for itinerant weavers, packmen, and linen merchants.
+              </span>
+            </span>. 
+            He had spent eighteen years living out of an oiled canvas pack strapped across his chest and shoulders, working a seasonal tallyman’s circuit through South Wales. His hair was iron-grey, his knees hardened by miles of sunken parish tracks, and his right hand rarely left his <em class="font-serif italic">ellwand</em>—a smoothed ash measuring rod, precisely forty-five inches long, banded with brass at either end. To the women at cottage doorways, it was the honest measure by which he cut lengths of Irish linen, cambric, and calico; to Semple, walking alone down solitary hollow-ways, it was a heavy defensive cudgel against highway footpads and farm mastiffs.
+          </p>
+        </div>
 
         <div class="sidenote-wrapper">
           <p>
@@ -411,15 +440,15 @@
           Emerging from the wooded hollows of the parish road, Semple felt the slope stiffen as the track skirted along the southern edge of the ancient earthen ring of <span class="fact-tag">Tredegar Hill Fort</span>, passing the quiet stone walls of Nant Coch Farm set back in its fields. At the crest of the hill, the lane met an open fork where a bleached timber guide-post pointed its carved hands along the split—one arm directing travellers down toward Bassaleg and the other toward Risca. It was the very marker post that would later give its name to the <span class="fact-tag">Handpost Inn</span>, standing at a natural vantage where turnpike gates would soon be planted.
         </p>
 
-        <!-- Visual Reconstruction: Bassaleg Road towards the Handpost -->
-        <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
+        <!-- Breakout Figure (max-w-5xl) -->
+        <figure class="my-10 sm:my-14 -mx-4 sm:-mx-8 md:-mx-16 lg:-mx-28 p-4 sm:p-6 bg-[#f7f3ea] border border-parchment-300 rounded-xl shadow-md transition-all">
           <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
             <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Historical Reconstruction • The Bassaleg Road</h3>
             <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">c. 1750 Landscape</span>
           </div>
 
-          <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Bassaleg-Road-1750.jpg', 'Visual Reconstruction: Bassaleg Road climbing towards the Handpost with Nant Coch on the left, c. 1750')">
-            <img src="Bassaleg-Road-1750.jpg" alt="1750 reconstruction of Bassaleg Road looking towards the Handpost" class="w-full max-h-[500px] object-cover mx-auto group-hover:scale-[1.01] transition-transform duration-200">
+          <div class="overflow-hidden rounded-lg border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Bassaleg-Road-1750.jpg', 'Visual Reconstruction: Bassaleg Road climbing towards the Handpost with Nant Coch on the left, c. 1750')">
+            <img src="Bassaleg-Road-1750.jpg" alt="1750 reconstruction of Bassaleg Road looking towards the Handpost" class="w-full max-h-[580px] object-cover mx-auto group-hover:scale-[1.01] transition-transform duration-200">
           </div>
 
           <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
@@ -454,7 +483,7 @@
             <span class="fact-tag">Free-School-House (Plot 70)</span>
             <span class="pepys-popover">
               <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">69 Stow Hill</strong>
-              Endowed in 1607 by Alderman William Williams. Later the borough workhouse (1783) and house of refuge; site now beneath a car park below Havelock Street.
+              Endowed in 1607 by Alderman William Williams. Later the borough workhouse (1783) and house of refuge; site now beneath a car park.
             </span>
           </span>. 
           Through the low boundary hedge, Semple could see the well-tended garden, though the schoolroom itself was quiet<a href="#fn-3" id="ref-3" class="fn-ref">3</a>. The previous master had vacated his post two years earlier after gaining preferment at Oxford, and notices had circulated across the county seeking a gentleman skilled in Latin grammar and the classics to take the rent-free lodging<a href="#fn-3" class="fn-ref">3</a>. Semple, whose father had drilled Latin syntax into him in a Lanark parish school, looked on the silent garden with a quiet nod before adjusting his shoulder straps.
@@ -495,7 +524,7 @@
         </details>
 
         <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
-          <strong class="text-ink font-semibold">Archival Significance:</strong> Identifies <strong>Plot 70 (“The School House”)</strong> on the 1750 plan, demonstrating the academic life of the pre-industrial borough. Endowed in 1607 by Alderman William Williams, this grammar school provided classical instruction for sons of burgesses and gentry before the site was converted into Newport's parish workhouse in 1783. Today, the location lies beneath a tarmac car park below Havelock Street.
+          <strong class="text-ink font-semibold">Archival Significance:</strong> Identifies <strong>Plot 70 (“The School House”)</strong> on the 1750 plan, demonstrating the academic life of the pre-industrial borough. Endowed in 1607 by Alderman William Williams, this grammar school provided classical instruction for sons of burgesses and gentry before the site was converted into Newport's parish workhouse in 1783. Today, the location lies beneath a tarmac car park.
         </figcaption>
       </figure>
 
@@ -531,23 +560,54 @@
         </figcaption>
       </figure>
 
-      <section class="space-y-5 sm:space-y-6">
+    <section class="space-y-5 sm:space-y-6">
         <p>
-          Passing the broken, weather-beaten stone base of an ancient wayside preaching cross near the corner of modern Havelock Street, the steep decline finally began to level out.
+          Passing the broken, weather-beaten stone base of an ancient wayside preaching cross near the corner of modern Havelock Street, the steep decline finally began to level out as the buildings crowded in.
         </p>
 
         <p>
-          Ahead, commanding the foot of the hill where the road met the bottom of modern Bridge Street, stood 
+          At the foot of the hill, commanding the road where Stow Hill emptied into the head of High Street, stood the ancient fortified 
+          <span class="pepys-entry" tabindex="0">
+            <span class="fact-tag">West Gate</span>
+            <span class="pepys-popover">
+              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Medieval Town Gate</strong>
+              The medieval western stone gatehouse and gaol spanning the roadway between Stow Hill and High Street; demolished c. 1799 to clear traffic.
+            </span>
+          </span>. 
+          Surviving until the close of the century, its low stone archway formed the physical threshold of the borough's liberties, with upper chambers that had served generations as the town gaol. To Semple's left stood 
           <span class="pepys-entry" tabindex="0">
             <span class="fact-tag">The Great House (Plot 42)</span>
             <span class="pepys-popover">
               <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Tredegar Town Mansion</strong>
               The urban residence of the Morgan family. Converted in the early 19th c. into the Tredegar Estate Offices, later Bailey & Co.'s Bank (now NatWest).
             </span>
-          </span>. 
-          This was the massive urban town mansion of the Morgan family of Tredegar, an imposing stone compound where estate business was transacted and where the family lodged during borough elections. Long before the plot became the bustling Tredegar Estate Offices, and decades before Bailey & Co.'s Bank and the bronze statue of Sir Charles Morgan occupied the site, Semple steered well clear of its front gates, slipping quietly round the corner into the commercial thoroughfare of High Street.
+          </span>—the imposing stone town mansion of the Morgans of Tredegar. Passing under the shadowy stone portal of the West Gate, Semple stepped abruptly out of the rural approach and directly into the noise and stench of the High Street.
         </p>
       </section>
+
+      <div class="sidenote-wrapper">
+          <p>
+            At the foot of the hill, commanding the road where Stow Hill emptied into the head of High Street, stood the ancient fortified 
+            <span class="pepys-entry" tabindex="0">
+              <span class="fact-tag">West Gate</span>
+              <span class="pepys-popover">
+                <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Medieval Town Gate</strong>
+                The medieval western stone gatehouse and gaol spanning the roadway between Stow Hill and High Street; demolished c. 1799 to clear traffic.
+              </span>
+            </span>. 
+            Surviving until the close of the century, its low stone archway formed the physical threshold of the borough's liberties, with upper chambers that had served generations as the town gaol. To Semple's left stood 
+            <span class="pepys-entry" tabindex="0">
+              <span class="fact-tag">The Great House (Plot 42)</span>
+              <span class="pepys-popover">
+                <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Tredegar Town Mansion</strong>
+                The urban residence of the Morgan family. Converted in the early 19th c. into the Tredegar Estate Offices, later Bailey & Co.'s Bank (now NatWest).
+              </span>
+            </span>—the imposing stone town mansion of the Morgans of Tredegar. Passing under the shadowy stone portal of the West Gate, Semple stepped abruptly out of the rural approach and directly into the noise and stench of the High Street.
+          </p>
+          <div class="sidenote">
+            <strong>The West Gate:</strong> Spanned the narrow pinch-point right outside the modern Westgate Hotel. Long before the 1839 Chartist uprising, <a href="https://www.newportpast.com/gallery/maps/1794/index.php" target="_blank">the 1794 map</a> confirms the gatehouse still constricted all coach traffic entering town.
+          </div>
+        </div>
 
       <!-- ACT III -->
       <section class="space-y-5 sm:space-y-6">
@@ -728,14 +788,14 @@
         </p>
 
         <!-- Visual Reconstruction: Old Malpas Road toward St Mary's Church -->
-        <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
+        <figure class="my-10 sm:my-14 -mx-4 sm:-mx-8 md:-mx-16 lg:-mx-28 p-4 sm:p-6 bg-[#f7f3ea] border border-parchment-300 rounded-xl shadow-md transition-all">
           <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
             <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Historical Reconstruction • The Old Malpas Road</h3>
             <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">c. 1750 Landscape</span>
           </div>
 
-          <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Old-Malpas-Road-1750.jpg', 'Visual Reconstruction: The old road between Crindau and Malpas hugging the higher contour above the waterlogged marsh flats, looking toward St Mary’s Church, c. 1750')">
-            <img src="Old-Malpas-Road-1750.jpg" alt="1750 reconstruction of the ancient Malpas Road winding towards St Mary's Church" class="w-full max-h-[500px] object-cover mx-auto group-hover:scale-[1.01] transition-transform duration-200">
+          <div class="overflow-hidden rounded-lg border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Old-Malpas-Road-1750.jpg', 'Visual Reconstruction: The old road between Crindau and Malpas hugging the higher contour above the waterlogged marsh flats, looking toward St Mary’s Church, c. 1750')">
+            <img src="Old-Malpas-Road-1750.jpg" alt="1750 reconstruction of the ancient Malpas Road winding towards St Mary's Church" class="w-full max-h-[580px] object-cover mx-auto group-hover:scale-[1.01] transition-transform duration-200">
           </div>
 
           <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
@@ -748,7 +808,7 @@
         </p>
 
         <p>
-          A short distance past the church lay <span class="fact-tag">Malpas House</span>, a quiet gentry seat. Semple continued past the turning to call at the estate’s kitchen quarters, successfully bargaining away his last lengths of ribbon and sewing thread to the domestic maids, before doubling back to the junction. (Centuries later, the Three Horseshoes pub would serve travellers at this exact crossing).
+          A short distance past the church lay <span class="fact-tag">Malpas House</span>, a quiet gentry seat. Semple continued past the turning to call at the estate’s kitchen quarters, successfully bargaining away his last lengths of ribbon and sewing thread to the domestic maids, before doubling back to the junction. (The Three Horseshoes pub would later serve travellers at this exact crossing).
         </p>
 
         <p>
@@ -1100,17 +1160,17 @@
         id: 4,
         title: "4. The Free School",
         year1750: "Schoolhouse & Garden (Plot 70)",
-        yearNow: "69 Stow Hill (car park below Havelock St)",
+        yearNow: "69 Stow Hill",
         act: "Act II",
         text: "Endowed in 1607 by Alderman William Williams. Advertised in March 1748 for a grammar master versed in classics following an Oxford preferment."
       },
       {
         id: 5,
-        title: "5. The Great House",
-        year1750: "Tredegar Town Mansion (Plot 42)",
-        yearNow: "Corner of High St & Bridge St (NatWest Bank)",
+        title: "5. West Gate & The Great House",
+        year1750: "Town Gatehouse (Gaol) & Tredegar Mansion",
+        yearNow: "Westgate Hotel square & NatWest Bank",
         act: "Act II",
-        text: "The imposing stone town mansion of the Morgans of Tredegar, later rebuilt as the Tredegar Estate Offices, Bailey & Co.'s Bank, and site of the 1848 Charles Morgan statue."
+        text: "The medieval stone gatehouse spanning the bottom of Stow Hill with prison rooms above, standing alongside the Morgan family's Great House (Plot 42) at the threshold of the borough."
       },
       {
         id: 6,
