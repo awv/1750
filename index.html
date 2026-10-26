@@ -688,41 +688,57 @@
       </section>
 
       <!-- Exhibit: 1750Map.jpg with Interactive Zoom Controls -->
-      <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-3 border-b border-parchment-300 pb-2 gap-2">
+      <!-- Exhibit: 1750Map.jpg with Pre-Zoomed Town Focus & Presets -->
+    <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-3 border-b border-parchment-300 pb-2 gap-2">
+        <div>
           <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Plan of the Town and Borough of Newport (c. 1750)</h3>
-          
-          <!-- Zoom & Pan Controls -->
-          <div class="flex items-center gap-1 bg-white border border-parchment-300 rounded px-2 py-1 shadow-sm self-start sm:self-auto font-sans text-xs">
-            <span class="text-ink-muted mr-1 font-semibold text-[11px] uppercase tracking-wider hidden sm:inline">Zoom:</span>
-            <button onclick="zoomMap(0.25)" class="px-2 py-0.5 hover:bg-parchment-100 rounded text-ink font-bold" title="Zoom In">+</button>
-            <button onclick="zoomMap(-0.25)" class="px-2 py-0.5 hover:bg-parchment-100 rounded text-ink font-bold border-l border-parchment-200" title="Zoom Out">−</button>
-            <button onclick="resetMapZoom()" class="px-2 py-0.5 hover:bg-parchment-100 rounded text-ink-muted text-[11px] border-l border-parchment-200" title="Reset View">Reset</button>
-            <span id="zoom-level" class="text-ink-muted ml-1 text-[10px] font-mono">100%</span>
-          </div>
+          <p class="font-sans text-[11px] text-ink-muted">Pre-zoomed on the borough core. Drag to explore or use area presets.</p>
         </div>
+        
+        <!-- Controls Bar -->
+        <div class="flex flex-wrap items-center gap-1.5 font-sans text-xs">
+          <!-- Location Jump Presets -->
+          <div class="inline-flex bg-white border border-parchment-300 rounded overflow-hidden shadow-sm">
+            <button onclick="focusMap('town')" class="px-2 py-1 text-[11px] hover:bg-parchment-100 font-medium text-ink border-r border-parchment-200">High St</button>
+            <button onclick="focusMap('stow')" class="px-2 py-1 text-[11px] hover:bg-parchment-100 font-medium text-ink border-r border-parchment-200">Stow Hill</button>
+            <button onclick="focusMap('castle')" class="px-2 py-1 text-[11px] hover:bg-parchment-100 font-medium text-ink border-r border-parchment-200">Castle / Mill</button>
+            <button onclick="focusMap('full')" class="px-2 py-1 text-[11px] hover:bg-parchment-100 font-medium text-ink-muted">Full Map</button>
+          </div>
 
-        <!-- Pan / Zoom Container -->
-        <div id="map-container" class="map-pan-container overflow-hidden rounded border border-parchment-300 bg-black/5 relative max-h-[560px]">
-          <div id="map-target" class="map-zoom-target flex items-center justify-center p-2">
-            <img id="map-img" src="1750Map.jpg" alt="1750 Newport Map" class="w-full max-h-[520px] object-contain mx-auto select-none pointer-events-none">
-          </div>
-          <div class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] font-sans px-2 py-0.5 rounded pointer-events-none sm:hidden">
-            Drag to pan • Use buttons to zoom
+          <!-- Zoom In / Out -->
+          <div class="inline-flex items-center bg-white border border-parchment-300 rounded shadow-sm px-1.5 py-0.5">
+            <button onclick="zoomMap(0.3)" class="px-2 py-0.5 hover:bg-parchment-100 rounded text-ink font-bold" title="Zoom In">+</button>
+            <button onclick="zoomMap(-0.3)" class="px-2 py-0.5 hover:bg-parchment-100 rounded text-ink font-bold border-l border-parchment-200" title="Zoom Out">−</button>
+            <span id="zoom-level" class="text-ink-muted ml-1.5 text-[10px] font-mono min-w-[36px] text-center">185%</span>
           </div>
         </div>
+      </div>
 
-        <div class="mt-4 p-3.5 sm:p-4 bg-white/70 rounded border border-parchment-300 font-sans text-xs text-ink leading-relaxed">
-          <strong class="font-header uppercase tracking-wider text-vermilion block text-[11px] mb-1">Archival Cartography Note<a href="#fn-7" class="fn-ref">7</a>:</strong>
-          <p class="font-serif italic text-sm mb-2">
-            “PLAN of the Town & Borough of NEWPORT upon a Scale of 100 Perch to an Inch / Copied from an Ancient Map (about the year 1750) shewing the Proprietors of the respective property with the Borough Boundaries.”<a href="#fn-7" class="fn-ref">7</a>
-          </p>
-          <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-            <span><strong>Source:</strong> Preserved in the <em>Newport Past</em> historical archives<a href="#fn-7" class="fn-ref">7</a>.</span>
-            <button onclick="openLightbox('1750Map.jpg', 'Plan of the Town and Borough of Newport (c. 1750)')" class="text-vermilion hover:underline text-left sm:text-right font-medium">Open in Fullscreen Modal ↗</button>
-          </div>
+      <!-- Interactive Pan / Zoom Viewport (Taller & fills the space) -->
+      <div id="map-container" class="map-pan-container overflow-hidden rounded border border-parchment-300 bg-[#e8e2d5] relative h-[560px] sm:h-[680px]">
+        <div id="map-target" class="map-zoom-target absolute inset-0 flex items-center justify-center">
+          <img id="map-img" src="1750Map.jpg" alt="1750 Newport Map" class="w-auto h-full max-w-none select-none pointer-events-none drop-shadow-md">
         </div>
-      </figure>
+        
+        <!-- Floating Hint Overlay -->
+        <div class="absolute bottom-3 left-3 bg-black/65 backdrop-blur-sm text-parchment-100 text-[11px] font-sans px-2.5 py-1 rounded flex items-center gap-1.5 pointer-events-none shadow">
+          <svg class="w-3.5 h-3.5 text-antiqueGold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+          <span>Click & drag to pan • Mousewheel / pinch to zoom</span>
+        </div>
+      </div>
+
+      <div class="mt-4 p-3.5 sm:p-4 bg-white/70 rounded border border-parchment-300 font-sans text-xs text-ink leading-relaxed">
+        <strong class="font-header uppercase tracking-wider text-vermilion block text-[11px] mb-1">Archival Cartography Note<a href="#fn-7" class="fn-ref">7</a>:</strong>
+        <p class="font-serif italic text-sm mb-2">
+          “PLAN of the Town & Borough of NEWPORT upon a Scale of 100 Perch to an Inch / Copied from an Ancient Map (about the year 1750) shewing the Proprietors of the respective property with the Borough Boundaries.”<a href="#fn-7" class="fn-ref">7</a>
+        </p>
+        <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+          <span><strong>Source:</strong> Preserved in the <em>Newport Past</em> historical archives<a href="#fn-7" class="fn-ref">7</a>.</span>
+          <button onclick="openLightbox('1750Map.jpg', 'Plan of the Town and Borough of Newport (c. 1750)')" class="text-vermilion hover:underline text-left sm:text-right font-medium">Open in Fullscreen Modal ↗</button>
+        </div>
+      </div>
+    </figure>
 
     </article>
 
@@ -859,6 +875,7 @@
   </div>
 
   <!-- JavaScript Implementation -->
+ <!-- JavaScript Implementation -->
   <script>
     // Complete 113 Burgage Plots from Newport Past Key
     const rawPlotsData = [
@@ -971,7 +988,7 @@
       { no: "112", prop: "??? Duke of Beaufort & Kemeys", note: "Beaufort / Kemeys", sig: "Boundary holding near Castle Green" }
     ];
 
-    // Swapped: 6 is The Red Cow, 7 is The King's Head
+    // Swapped Waypoint sequence (6 is The Red Cow, 7 is The King's Head)
     const routeWaypoints = [
       {
         id: 1,
@@ -1154,11 +1171,12 @@
       if (e.key === 'Escape') closeLightbox();
     });
 
-    // Map Zoom & Pan State
-    let mapScale = 1;
+    // Map State (Pre-zoomed 185% over High Street)
+    let mapScale = 1.85;
+    let translateX = -20;
+    let translateY = 40;
     let isPanning = false;
     let startX = 0, startY = 0;
-    let translateX = 0, translateY = 0;
 
     function updateMapTransform() {
       const target = document.getElementById('map-target');
@@ -1172,28 +1190,38 @@
     }
 
     function zoomMap(delta) {
-      mapScale = Math.min(3.5, Math.max(1, mapScale + delta));
-      if (mapScale === 1) {
+      mapScale = Math.min(4.0, Math.max(0.85, mapScale + delta));
+      updateMapTransform();
+    }
+
+    // Quick Focus Area Presets
+    function focusMap(area) {
+      if (area === 'town') {
+        mapScale = 2.1;
+        translateX = -35;
+        translateY = 30;
+      } else if (area === 'stow') {
+        mapScale = 2.0;
+        translateX = 20;
+        translateY = -180;
+      } else if (area === 'castle') {
+        mapScale = 2.0;
+        translateX = -60;
+        translateY = 220;
+      } else if (area === 'full') {
+        mapScale = 0.95;
         translateX = 0;
         translateY = 0;
       }
       updateMapTransform();
     }
 
-    function resetMapZoom() {
-      mapScale = 1;
-      translateX = 0;
-      translateY = 0;
-      updateMapTransform();
-    }
-
-    // Map Pan Interactions (Mouse & Touch)
     function setupMapPan() {
       const container = document.getElementById('map-container');
       if (!container) return;
 
+      // Mouse drag panning
       container.addEventListener('mousedown', (e) => {
-        if (mapScale <= 1) return;
         isPanning = true;
         startX = e.clientX - translateX;
         startY = e.clientY - translateY;
@@ -1208,32 +1236,63 @@
 
       window.addEventListener('mouseup', () => { isPanning = false; });
 
-      // Mobile Touch Handling
+      // Mouse wheel zoom
+      container.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY < 0 ? 0.25 : -0.25;
+        zoomMap(delta);
+      }, { passive: false });
+
+      // Touch handling: pan with 1 finger, pinch-zoom with 2 fingers
+      let initialPinchDistance = null;
+      let initialScale = mapScale;
+
       container.addEventListener('touchstart', (e) => {
-        if (mapScale <= 1 || e.touches.length !== 1) return;
-        isPanning = true;
-        startX = e.touches[0].clientX - translateX;
-        startY = e.touches[0].clientY - translateY;
+        if (e.touches.length === 1) {
+          isPanning = true;
+          startX = e.touches[0].clientX - translateX;
+          startY = e.touches[0].clientY - translateY;
+        } else if (e.touches.length === 2) {
+          isPanning = false;
+          initialPinchDistance = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+          );
+          initialScale = mapScale;
+        }
       }, { passive: true });
 
       container.addEventListener('touchmove', (e) => {
-        if (!isPanning || e.touches.length !== 1) return;
-        translateX = e.touches[0].clientX - startX;
-        translateY = e.touches[0].clientY - startY;
-        updateMapTransform();
+        if (isPanning && e.touches.length === 1) {
+          translateX = e.touches[0].clientX - startX;
+          translateY = e.touches[0].clientY - startY;
+          updateMapTransform();
+        } else if (e.touches.length === 2 && initialPinchDistance) {
+          const currentDistance = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+          );
+          const factor = currentDistance / initialPinchDistance;
+          mapScale = Math.min(4.0, Math.max(0.85, initialScale * factor));
+          updateMapTransform();
+        }
       }, { passive: true });
 
-      container.addEventListener('touchend', () => { isPanning = false; });
+      container.addEventListener('touchend', () => {
+        isPanning = false;
+        initialPinchDistance = null;
+      });
+
+      // Apply initial town-centre view immediately
+      updateMapTransform();
     }
 
-    // Pepys Touch Popover Toggling on Mobile
+    // Rich Tooltip touch interaction for mobile
     function setupMobilePepys() {
       const entries = document.querySelectorAll('.pepys-entry');
       entries.forEach(entry => {
         entry.addEventListener('click', (e) => {
-          // If on desktop hover, let CSS handle it
           if (window.innerWidth >= 768) return;
-          
           e.stopPropagation();
           const isActive = entry.classList.contains('active');
           entries.forEach(el => el.classList.remove('active'));
@@ -1246,7 +1305,7 @@
       });
     }
 
-    // Initialisation
+    // Run setup when DOM is ready
     function init() {
       renderWaypoints();
       renderGazetteerTable();
