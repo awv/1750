@@ -93,15 +93,9 @@
     }
     .pepys-popover {
       display: none;
-      position: absolute;
-      bottom: calc(100% + 10px);
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(290px, 85vw);
       background: #ffffff;
       border: 1px solid #c5b18f;
       border-top: 3px solid #9e3521;
-      box-shadow: 0 10px 25px -5px rgba(28, 26, 23, 0.22);
       border-radius: 4px;
       padding: 12px 14px;
       font-family: 'Inter', system-ui, sans-serif;
@@ -112,16 +106,43 @@
       z-index: 70;
       pointer-events: auto;
     }
-    .pepys-popover::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -6px;
-      border-width: 6px;
-      border-style: solid;
-      border-color: #ffffff transparent transparent transparent;
+
+    /* Mobile: Anchored viewport sheet to prevent horizontal clipping */
+    @media (max-width: 639px) {
+      .pepys-popover {
+        position: fixed;
+        left: 1rem;
+        right: 1rem;
+        bottom: 1.5rem;
+        width: auto;
+        max-width: calc(100vw - 2rem);
+        transform: none;
+        box-shadow: 0 10px 25px -5px rgba(28, 26, 23, 0.35), 0 8px 10px -6px rgba(28, 26, 23, 0.25);
+      }
     }
+
+    /* Desktop: Centered floating balloon above term */
+    @media (min-width: 640px) {
+      .pepys-popover {
+        position: absolute;
+        bottom: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(290px, 85vw);
+        box-shadow: 0 10px 25px -5px rgba(28, 26, 23, 0.22);
+      }
+      .pepys-popover::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -6px;
+        border-width: 6px;
+        border-style: solid;
+        border-color: #ffffff transparent transparent transparent;
+      }
+    }
+
     @media (min-width: 768px) {
       .pepys-entry:hover .pepys-popover,
       .pepys-entry:focus .pepys-popover {
@@ -130,20 +151,6 @@
     }
     .pepys-entry.active .pepys-popover {
       display: block !important;
-    }
-
-    /* Highlight Fact Mode */
-    .fact-tag {
-      position: relative;
-      transition: all 0.25s ease;
-      border-bottom: 1px dashed #b38b4d;
-    }
-    body.highlight-facts .fact-tag {
-      background-color: rgba(179, 139, 77, 0.22);
-      border-bottom: 2px solid #9e3521;
-      padding: 0 4px;
-      border-radius: 2px;
-      font-weight: 500;
     }
 
     /* Responsive Sidenotes (Edward Tufte Style) */
@@ -190,7 +197,7 @@
       will-change: transform;
     }
 
-    /* Footnote Superscripts - Zero height to preserve paragraph rhythm */
+    /* Footnote Superscripts - Preserves baseline rhythm */
     .fn-ref {
       font-family: 'Inter', system-ui, sans-serif;
       font-size: 0.68em;
@@ -237,12 +244,6 @@
 
       <!-- Right: Action Buttons -->
       <div class="flex items-center space-x-1.5 sm:space-x-3 text-xs font-sans shrink-0">
-        <button id="toggle-facts-btn" class="flex items-center space-x-1 px-2 sm:px-3 py-1 rounded border border-parchment-300 hover:border-antiqueGold text-ink-muted hover:text-ink transition whitespace-nowrap">
-          <svg class="w-3.5 h-3.5 text-antiqueGold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-          <span class="hidden sm:inline">Highlight Facts</span>
-          <span class="sm:hidden text-[11px]">Facts</span>
-        </button>
-
         <a href="#interactive-map" class="px-2 sm:px-2.5 py-1 rounded bg-parchment-100 hover:bg-parchment-200 text-ink-muted hover:text-ink transition hidden md:inline">
           Route
         </a>
@@ -291,7 +292,6 @@
           In 1750, Newport was not yet an industrial port city; there were no docks, no Monmouthshire Canal, and no railway. It was a compact market town and river port of under 1,000 inhabitants. This narrative reconstructs what a pedestrian may have encountered on the ancient parish roads eight years prior to the First Monmouthshire Turnpike Act of 1758. The route is based on a description of a route from the 1758 Turnpike Act as well as the 1770 version. Other elements of the article are based on early maps and newspaper adverts.
         </div>
       </details>
-
     </section>
 
     <!-- Narrative Article Body -->
@@ -309,7 +309,6 @@
           </h2>
         </div>
 
-        <!-- Asymmetrical Intro with Float Portrait (Option 1 Breakout compatible on small/large screens) -->
         <div class="relative flow-root">
           <!-- Portrait Pullout Card -->
           <div class="w-full sm:w-[260px] md:w-[280px] sm:float-right sm:ml-6 sm:mb-4 mb-6 p-3 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
@@ -325,7 +324,7 @@
           <p class="drop-cap">
             His name was Alexander Semple, though along the border valleys of Monmouthshire no one called him that. To the farm wives of Wentloog, the hostlers at the coaching gates, and the magistrates sitting in petty sessions, he was simply 
             <span class="pepys-entry" tabindex="0">
-              <span class="fact-tag">“the Scotchman.”</span>
+              “the Scotchman.”
               <span class="pepys-popover">
                 <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Trade Classification</strong>
                 An 18th-century commercial term across Britain for travelling tally-drapers selling cloth, linens, and haberdashery on scheduled credit circuits, regardless of actual nationality.
@@ -336,7 +335,7 @@
           <p>
             Semple was forty-two years old, hailing originally from the 
             <span class="pepys-entry" tabindex="0">
-              <span class="fact-tag">Upper Ward of Lanarkshire</span>
+              Upper Ward of Lanarkshire
               <span class="pepys-popover">
                 <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Scottish Lowlands</strong>
                 The southern upland territory around Biggar and Lanark, a historic heartland for itinerant weavers, packmen, and linen merchants.
@@ -348,7 +347,7 @@
 
         <div class="sidenote-wrapper">
           <p>
-            In the heat of late June 1750, Semple was finishing an eastward collection round. He had started the circuit over in the small market town of Cardiff, crossing the ancient border at the historic crossing of <span class="fact-tag">Rumney Bridge</span>. Heading toward Newport, the main thoroughfare did not strike directly across the coastal plain; instead, it swung north in a wide, sweeping arc outward to Bassaleg, skirting well clear of the vast enclosed deer parks, boundary walls, and private home grounds of the <span class="fact-tag">Morgan family at Tredegar House</span>. These rough, rutted parish tracks were completely open and toll-free, maintained only by the reluctant six-day labour of local farmers, though within the decade they would be seized by Parliament and gated as official turnpike roads<a href="#fn-1" id="ref-1" class="fn-ref">1</a>.
+            In the heat of late June 1750, Semple was finishing an eastward collection round. He had started the circuit over in the small market town of Cardiff, crossing the ancient border at the historic crossing of Rumney Bridge. Heading toward Newport, the main thoroughfare did not strike directly across the coastal plain; instead, it swung north in a wide, sweeping arc outward to Bassaleg, skirting well clear of the vast enclosed deer parks, boundary walls, and private home grounds of the Morgan family at Tredegar House. These rough, rutted parish tracks were completely open and toll-free, maintained only by the reluctant six-day labour of local farmers, though within the decade they would be seized by Parliament and gated as official turnpike roads<a href="#fn-1" id="ref-1" class="fn-ref">1</a>.
           </p>
           <div class="sidenote">
             <strong>Today's Alignment:</strong> The ancient arc around the parklands survives today along the Old Tredegar boundary via Bassaleg before meeting the 1758 Turnpike alignment.
@@ -362,13 +361,13 @@
         <p>
           Every yard of lane brought a prickle of caution. Only the previous winter, the taprooms in Bassaleg had been buzzing with the news of an assault on this very road: a clerk to 
           <span class="pepys-entry" tabindex="0">
-            <span class="fact-tag">Mr Peter Davies, the Newport attorney</span>
+            Mr Peter Davies, the Newport attorney
             <span class="pepys-popover">
-              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Plots 98 & 102</strong>
+              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Plots 98 &amp; 102</strong>
               Peter Davies, prominent Newport attorney at law, holding tenements and legal offices documented on the 1750 plan.
             </span>
           </span>, 
-          had been brutally beaten in broad daylight by a local yeoman named <span class="fact-tag">Henry Thomas John</span>, who had made off with the clerk’s five-shilling gun<a href="#fn-2" id="ref-2" class="fn-ref">2</a>. Semple had seen the wanted notice pinned up, warning travellers that the absconder wore a drab surtout and blue shag breeches and could speak not a single word of English<a href="#fn-2" class="fn-ref">2</a>. A travelling dealer carrying hard silver coin down unlit lanes between Bassaleg and Newport was an infinitely richer prize than an attorney’s clerk.
+          had been brutally beaten in broad daylight by a local yeoman named Henry Thomas John, who had made off with the clerk’s five-shilling gun<a href="#fn-2" id="ref-2" class="fn-ref">2</a>. Semple had seen the wanted notice pinned up, warning travellers that the absconder wore a drab surtout and blue shag breeches and could speak not a single word of English<a href="#fn-2" class="fn-ref">2</a>. A travelling dealer carrying hard silver coin down unlit lanes between Bassaleg and Newport was an infinitely richer prize than an attorney’s clerk.
         </p>
       </section>
 
@@ -379,7 +378,7 @@
           <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">1749 Primary Clipping</span>
         </div>
 
-        <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Bassaleg-Crime.jpg', 'Assault & Robbery on the Bassaleg Road — Gloucester Journal, 7th February, 1749')">
+        <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Bassaleg-Crime.jpg', 'Assault &amp; Robbery on the Bassaleg Road — Gloucester Journal, 7th February, 1749')">
           <img src="Bassaleg-Crime.jpg" alt="Assault on Bassaleg Road notice" class="w-full max-h-96 object-contain mx-auto group-hover:scale-[1.01] transition-transform duration-200">
         </div>
 
@@ -412,10 +411,7 @@
 
       <!-- Editorial Fleuron Break -->
       <div class="pt-16 pb-12 relative flex items-center justify-center" aria-hidden="true">
-        <!-- Single continuous hairline -->
         <div class="w-full max-w-[280px] sm:max-w-[360px] h-px bg-gradient-to-r from-transparent via-parchment-400 to-transparent"></div>
-        
-        <!-- Dead-centre ornament with true geometry center -->
         <div class="absolute bg-[#fcfaf6] px-3 flex items-center justify-center">
           <svg class="w-3.5 h-3.5 block text-antiqueGold" viewBox="0 -3 24 24" fill="currentColor">
             <path d="M12 2C11.5 4 10 6 8 7C6 8 4 8.5 2 9C4 9.5 6 10 8 11C10 12 11.5 14 12 16C12.5 14 14 12 16 11C18 10 20 9.5 22 9C20 8.5 18 8 16 7C14 6 12.5 4 12 2Z"/>
@@ -437,21 +433,21 @@
         </div>
 
         <p>
-          Emerging from the wooded hollows of the parish road, Semple felt the slope stiffen as the track skirted along the southern edge of the ancient earthen ring of <span class="fact-tag">Tredegar Hill Fort</span>, passing the quiet stone walls of Nant Coch Farm set back in its fields. At the crest of the hill, the lane met an open fork where a bleached timber guide-post pointed its carved hands along the split—one arm directing travellers down toward Bassaleg and the other toward Risca. It was the very marker post that would later give its name to the <span class="fact-tag">Handpost Inn</span>, standing at a natural vantage where turnpike gates would soon be planted.
+          Emerging from the wooded hollows of the parish road, Semple felt the slope stiffen as the track skirted along the southern edge of the ancient earthen ring of Tredegar Hill Fort, passing the quiet stone walls of Nant Coch Farm set back in its fields. At the crest of the hill, the lane met an open fork where a bleached timber guide-post pointed its carved hands along the split—one arm directing travellers down toward Bassaleg and the other toward Risca. It was the very marker post that would later give its name to the Handpost Inn, standing at a natural vantage where turnpike gates would soon be planted.
         </p>
 
-        <!-- Breakout Figure (max-w-5xl) -->
-        <figure class="my-10 sm:my-14 -mx-4 sm:-mx-8 md:-mx-16 lg:-mx-28 p-4 sm:p-6 bg-[#f7f3ea] border border-parchment-300 rounded-xl shadow-md transition-all">
-          <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
+        <!-- Breakout Figure 1: Bassaleg Road (Flush on mobile) -->
+        <figure class="my-8 sm:my-14 -mx-4 sm:-mx-8 md:-mx-16 lg:-mx-28 p-0 sm:p-6 bg-[#f7f3ea] border-y sm:border border-parchment-300 rounded-none sm:rounded-xl shadow-none sm:shadow-md transition-all">
+          <div class="p-4 sm:p-0 sm:mb-3 sm:border-b sm:border-parchment-300 sm:pb-2 flex items-center justify-between">
             <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Historical Reconstruction • The Bassaleg Road</h3>
             <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">c. 1750 Landscape</span>
           </div>
 
-          <div class="overflow-hidden rounded-lg border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Bassaleg-Road-1750.jpg', 'Visual Reconstruction: Bassaleg Road climbing towards the Handpost with Nant Coch on the left, c. 1750')">
+          <div class="overflow-hidden rounded-none sm:rounded-lg border-0 sm:border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Bassaleg-Road-1750.jpg', 'Visual Reconstruction: Bassaleg Road climbing towards the Handpost with Nant Coch on the left, c. 1750')">
             <img src="Bassaleg-Road-1750.jpg" alt="1750 reconstruction of Bassaleg Road looking towards the Handpost" class="w-full max-h-[580px] object-cover mx-auto group-hover:scale-[1.01] transition-transform duration-200">
           </div>
 
-          <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
+          <figcaption class="p-4 sm:p-0 sm:mt-3 font-sans text-xs text-ink-muted leading-relaxed">
             <strong class="text-ink font-semibold">Landscape Comparison:</strong> A reconstruction showing how present-day Bassaleg Road would have appeared to a traveller climbing northeast toward the Handpost junction. On the left sits the isolated stone homestead of <span class="text-ink font-medium">Nant Coch</span> set back within its fields, while to the right the road skirts the ancient, tree-crowned slopes below the Tredegar Hill Fort earthworks.
           </figcaption>
         </figure>
@@ -463,7 +459,7 @@
         <p>
           By the roadside stood the modest stone front of the 
           <span class="pepys-entry" tabindex="0">
-            <span class="fact-tag">Bull Inn at Stow</span>
+            Bull Inn at Stow
             <span class="pepys-popover">
               <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Stow Hill Hostelry</strong>
               An ancient wayside public house on Stow Hill; nineteenth-century notices show it long remained a staple drovers’ halt for grazing and stabling.
@@ -473,50 +469,50 @@
         </p>
 
         <!-- Exhibit: Bull-Inn-Stow.jpg -->
-      <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
-        <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
-          <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Horse Theft &amp; Pasture at the Bull at Stow</h3>
-          <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">1841 Archival Clipping</span>
-        </div>
-
-        <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Bull-Inn-Stow.jpg', 'Notice of a suspected stolen horse left at the Bull at Stow, Parish of St Woollos — Notice by John Adieu, 1841')">
-          <img src="Bull-Inn-Stow.jpg" alt="Suspected stolen horse notice at the Bull at Stow, 1841" class="w-full max-h-80 object-contain mx-auto group-hover:scale-[1.01] transition-transform duration-200">
-        </div>
-
-        <!-- Collapsible Transcript Accordion -->
-        <details class="group mt-4 bg-white/70 rounded border border-parchment-300 overflow-hidden text-xs">
-          <summary class="flex items-center justify-between p-3 cursor-pointer select-none bg-parchment-100/60 hover:bg-parchment-200/50 transition font-sans font-semibold text-vermilion uppercase tracking-wider text-[11px]">
-            <span class="flex items-center gap-1.5">
-              <svg class="w-3.5 h-3.5 text-vermilion" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-              View Full Archival Transcript
-            </span>
-            <svg class="w-4 h-4 text-ink-muted transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-          </summary>
-          <div class="p-3.5 sm:p-4 border-t border-parchment-200 font-sans text-xs text-ink leading-relaxed">
-            <p class="font-serif italic text-sm mb-2">
-              “WHEREAS a Horse was left on the 7th of May last, at the Bull at Stow, in the Parish of St. Woollos, in the County of Monmouth, by a Person unknown, who agreed for the said Horse’s Grass at Eight-pence per Night : This is to give Notice, that unless the said Person, or Owner, shall before the 7th Day of July next come, and redeem the aforesaid Horse, he will be appraised, (according as the Law shall direct in such Cases) and sold by me, in whose Custody the Horse now remains, JOHN ADIEU.<br><br>
-              N. B. He is a black Horse, full fourteen Hands high, with a Snip, the Near Leg before and Off Leg behind white ; and is suppos’d to have been stolen.”
-            </p>
-            <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted">
-              <strong>Source:</strong> <em>The Gloucester Journal</em>, 23rd June, 1841<a href="#fn-bull" class="fn-ref">4</a>.
-            </div>
+        <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
+          <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
+            <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Horse Theft &amp; Pasture at the Bull at Stow</h3>
+            <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">1841 Archival Clipping</span>
           </div>
-        </details>
 
-        <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
-          <strong class="text-ink font-semibold">Archival Significance:</strong> Although dating to <strong>23rd June, 1841</strong>, this notice provides rare documentary evidence for <strong>The Bull at Stow</strong> in the parish of St Woollos. Placed alongside the ancient Stow Fair fields, it records the centuries-old customary practice of rural inns taking in drovers' road stock for pasture (“grass at eight-pence per night”), as well as the ongoing vulnerability of the ridge to livestock theft.
-        </figcaption>
-      </figure>
+          <div class="overflow-hidden rounded border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Bull-Inn-Stow.jpg', 'Notice of a suspected stolen horse left at the Bull at Stow, Parish of St Woollos — Notice by John Adieu, 1841')">
+            <img src="Bull-Inn-Stow.jpg" alt="Suspected stolen horse notice at the Bull at Stow, 1841" class="w-full max-h-80 object-contain mx-auto group-hover:scale-[1.01] transition-transform duration-200">
+          </div>
+
+          <!-- Collapsible Transcript Accordion -->
+          <details class="group mt-4 bg-white/70 rounded border border-parchment-300 overflow-hidden text-xs">
+            <summary class="flex items-center justify-between p-3 cursor-pointer select-none bg-parchment-100/60 hover:bg-parchment-200/50 transition font-sans font-semibold text-vermilion uppercase tracking-wider text-[11px]">
+              <span class="flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 text-vermilion" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                View Full Archival Transcript
+              </span>
+              <svg class="w-4 h-4 text-ink-muted transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </summary>
+            <div class="p-3.5 sm:p-4 border-t border-parchment-200 font-sans text-xs text-ink leading-relaxed">
+              <p class="font-serif italic text-sm mb-2">
+                “WHEREAS a Horse was left on the 7th of May last, at the Bull at Stow, in the Parish of St. Woollos, in the County of Monmouth, by a Person unknown, who agreed for the said Horse’s Grass at Eight-pence per Night : This is to give Notice, that unless the said Person, or Owner, shall before the 7th Day of July next come, and redeem the aforesaid Horse, he will be appraised, (according as the Law shall direct in such Cases) and sold by me, in whose Custody the Horse now remains, JOHN ADIEU.<br><br>
+                N. B. He is a black Horse, full fourteen Hands high, with a Snip, the Near Leg before and Off Leg behind white ; and is suppos’d to have been stolen.”
+              </p>
+              <div class="mt-2 pt-2 border-t border-parchment-200 text-[11px] text-ink-muted">
+                <strong>Source:</strong> <em>The Gloucester Journal</em>, 23rd June, 1841<a href="#fn-bull" class="fn-ref">4</a>.
+              </div>
+            </div>
+          </details>
+
+          <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
+            <strong class="text-ink font-semibold">Archival Significance:</strong> Although dating to <strong>23rd June, 1841</strong>, this notice provides rare documentary evidence for <strong>The Bull at Stow</strong> in the parish of St Woollos. Placed alongside the ancient Stow Fair fields, it records the centuries-old customary practice of rural inns taking in drovers' road stock for pasture (“grass at eight-pence per night”), as well as the ongoing vulnerability of the ridge to livestock theft.
+          </figcaption>
+        </figure>
 
         <p>
-          Turning along the level ridge of Stow Hill, Semple saw the massive square stone tower of <span class="fact-tag">St Woolos Church</span> rise against the sky. It was a venerable church with pre-Norman origins, standing solitary on the high rural skyline rather than hemmed in by city terraces. Here, on the outer borough bounds, sat the Stow Manor Pound for stray cattle along with the rectorial tithe barn. Passing the boundary markers into the borough proper, he began the descent down Stow Hill over loose red sandstone gravel.
+          Turning along the level ridge of Stow Hill, Semple saw the massive square stone tower of St Woolos Church rise against the sky. It was a venerable church with pre-Norman origins, standing solitary on the high rural skyline rather than hemmed in by city terraces. Here, on the outer borough bounds, sat the Stow Manor Pound for stray cattle along with the rectorial tithe barn. Passing the boundary markers into the borough proper, he began the descent down Stow Hill over loose red sandstone gravel.
         </p>
 
-      <div class="sidenote-wrapper">
+        <div class="sidenote-wrapper">
           <p>
-            On his left stood the modest stone almshouses <span class="font-sans text-xs bg-parchment-200 px-1 rounded font-mono font-semibold">(Plot 55)</span>, founded fifty years earlier by Roger Williams to shelter six poor women of the town. (Though rebuilt on this lower ground in 1845, the charity would eventually be moved and rebuilt further up the hill in 1901, where its Victorian brick successor still stands). Almost next door sat <span class="font-sans text-xs bg-parchment-200 px-1 rounded font-mono font-semibold">Plot 57</span>, a substantial holding leased by 
+            On his left stood the modest stone almshouses <span class="font-sans text-xs bg-parchment-200 px-1 rounded font-mono font-semibold">(Plot 55)</span>, founded fifty years earlier by Roger Williams to shelter six poor women of the town. (Though rebuilt on this lower ground in 1845, the charity would eventually be moved and rebuilt further up the hill in 1901, where its Victorian brick successor still stands). Almost next door sat <span class="font-sans text-xs bg-parchment-200 px-1 rounded font-mono font-semibold">(Plot 57)</span>, a substantial holding leased by 
             <span class="pepys-entry" tabindex="0">
-              <span class="fact-tag">Thomas Dumayne, Esq.</span>
+              Thomas Dumayne, Esq.
               <span class="pepys-popover">
                 <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Mayor of Newport</strong>
                 Chief magistrate 1750–1754; maltster and merchant occupying a substantial house, stable, 4,000-bushel malthouse, and an acre of orchard.
@@ -529,42 +525,42 @@
           </div>
         </div>
 
-              <!-- Exhibit: Commercial Premises & Trade Tenancies (Thomas Dumayne) -->
-      <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
-        <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
-          <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Commercial Premises &amp; Trade Tenancies</h3>
-          <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">1750 Primary Clipping</span>
-        </div>
-
-        <div class="overflow-hidden rounded border border-parchment-300 bg-white p-3 cursor-pointer group" onclick="openLightbox('Dumayne.jpg', 'Notice to let a commodious house, malthouse, stable, and orchard in the middle of Newport, rented by Thomas Dumayne, Esq., Mayor')">
-          <img src="Dumayne.jpg" alt="1750 advertisement to let a house and malthouse rented by Mayor Thomas Dumayne" class="w-full max-h-[380px] object-contain mx-auto group-hover:scale-[1.01] transition-transform duration-200">
-        </div>
-
-        <!-- Collapsible Transcript Accordion -->
-        <details class="group mt-4 bg-white/70 rounded border border-parchment-300 overflow-hidden text-xs">
-          <summary class="flex items-center justify-between p-3 cursor-pointer select-none bg-parchment-100/60 hover:bg-parchment-200/50 transition font-sans font-semibold text-vermilion uppercase tracking-wider text-[11px]">
-            <span class="flex items-center gap-1.5">
-              <svg class="w-3.5 h-3.5 text-vermilion" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-              View Full Archival Transcript
-            </span>
-            <svg class="w-4 h-4 text-ink-muted transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-          </summary>
-          <div class="p-3.5 sm:p-4 border-t border-parchment-200 font-serif italic text-sm text-ink leading-relaxed">
-            <p>
-              “To be Lett, and Entered upon at May next, A very good commodious <span class="font-sans not-italic text-xs tracking-wider uppercase">House</span>, Situate in the Middle of the Town of Newport, in the County of Monmouth, and now rented by <span class="font-sans not-italic text-xs tracking-wider uppercase">Thomas Dumayne</span>, Eſq; Mayor of the ſaid Town; with a good Malt-Houſe thereto belonging, where may be made Yearly between 3 and 4000 Buſhels of Malt; together with a Stable, Garden, and an Orchard of about an Acre of Land, with all Manner of Fruit-Trees. For farther Particulars enquire of Charles Griffiths, of Laneravon, in the ſaid County, Gent.”
-            </p>
+        <!-- Exhibit: Commercial Premises & Trade Tenancies (Thomas Dumayne) -->
+        <figure class="my-8 sm:my-10 p-4 sm:p-5 bg-[#f7f3ea] border border-parchment-300 rounded-lg shadow-sm">
+          <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
+            <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Commercial Premises &amp; Trade Tenancies</h3>
+            <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">1750 Primary Clipping</span>
           </div>
-        </details>
 
-        <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
-          <strong class="text-ink font-semibold">Archival Significance:</strong> Corresponding directly with <strong>Plot 57 (“Mr Dumain”)</strong> on the 1750 Town Plan, this notice illustrates that Newport’s municipal leaders were major wholesale producers[cite: 17]. Wetting 4,000 bushels of grain annually represents nearly 90 imperial tons of malt per season[cite: 17]—enough to brew roughly 40,000 to 50,000 gallons of ale. In a borough of barely 1,000 inhabitants, Dumayne was not merely supplying his own household, but operating a major regional enterprise furnishing town alehouses and the Bristol coastal trade.
-        </figcaption>
-      </figure>
+          <div class="overflow-hidden rounded border border-parchment-300 bg-white p-3 cursor-pointer group" onclick="openLightbox('Dumayne.jpg', 'Notice to let a commodious house, malthouse, stable, and orchard in the middle of Newport, rented by Thomas Dumayne, Esq., Mayor')">
+            <img src="Dumayne.jpg" alt="1750 advertisement to let a house and malthouse rented by Mayor Thomas Dumayne" class="w-full max-h-[380px] object-contain mx-auto group-hover:scale-[1.01] transition-transform duration-200">
+          </div>
+
+          <!-- Collapsible Transcript Accordion -->
+          <details class="group mt-4 bg-white/70 rounded border border-parchment-300 overflow-hidden text-xs">
+            <summary class="flex items-center justify-between p-3 cursor-pointer select-none bg-parchment-100/60 hover:bg-parchment-200/50 transition font-sans font-semibold text-vermilion uppercase tracking-wider text-[11px]">
+              <span class="flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 text-vermilion" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                View Full Archival Transcript
+              </span>
+              <svg class="w-4 h-4 text-ink-muted transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </summary>
+            <div class="p-3.5 sm:p-4 border-t border-parchment-200 font-serif italic text-sm text-ink leading-relaxed">
+              <p>
+                “To be Lett, and Entered upon at May next, A very good commodious <span class="font-sans not-italic text-xs tracking-wider uppercase">House</span>, Situate in the Middle of the Town of Newport, in the County of Monmouth, and now rented by <span class="font-sans not-italic text-xs tracking-wider uppercase">Thomas Dumayne</span>, Eſq; Mayor of the ſaid Town; with a good Malt-Houſe thereto belonging, where may be made Yearly between 3 and 4000 Buſhels of Malt; together with a Stable, Garden, and an Orchard of about an Acre of Land, with all Manner of Fruit-Trees. For farther Particulars enquire of Charles Griffiths, of Laneravon, in the ſaid County, Gent.”
+              </p>
+            </div>
+          </details>
+
+          <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
+            <strong class="text-ink font-semibold">Archival Significance:</strong> Corresponding directly with <strong>Plot 57 (“Mr Dumain”)</strong> on the 1750 Town Plan, this notice illustrates that Newport’s municipal leaders were major wholesale producers. Wetting 4,000 bushels of grain annually represents nearly 90 imperial tons of malt per season—enough to brew roughly 40,000 to 50,000 gallons of ale. In a borough of barely 1,000 inhabitants, Dumayne was not merely supplying his own household, but operating a major regional enterprise furnishing town alehouses and the Bristol coastal trade.
+          </figcaption>
+        </figure>
 
         <p>
           Further down on the right lay the 
           <span class="pepys-entry" tabindex="0">
-            <span class="fact-tag">Free-School-House (Plot 70)</span>
+            Free-School-House (Plot 70)
             <span class="pepys-popover">
               <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">69 Stow Hill</strong>
               Endowed in 1607 by Alderman William Williams. Later the borough workhouse (1783) and house of refuge; site now beneath a car park.
@@ -612,36 +608,16 @@
         </figcaption>
       </figure>
 
-    <section class="space-y-5 sm:space-y-6">
+      <section class="space-y-5 sm:space-y-6">
         <p>
           Passing the broken, weather-beaten stone base of an ancient wayside preaching cross near the corner of modern Havelock Street, the steep decline finally began to level out as the buildings crowded in.
         </p>
 
-        <p>
-          At the foot of the hill, commanding the road where Stow Hill emptied into the head of High Street, stood the ancient fortified 
-          <span class="pepys-entry" tabindex="0">
-            <span class="fact-tag">West Gate</span>
-            <span class="pepys-popover">
-              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Medieval Town Gate</strong>
-              The medieval western stone gatehouse and gaol spanning the roadway between Stow Hill and High Street; demolished c. 1799 to clear traffic.
-            </span>
-          </span>. 
-          Surviving until the close of the century, its low stone archway formed the physical threshold of the borough's liberties, with upper chambers that had served generations as the town gaol. To Semple's left stood 
-          <span class="pepys-entry" tabindex="0">
-            <span class="fact-tag">The Great House (Plot 42)</span>
-            <span class="pepys-popover">
-              <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Tredegar Town Mansion</strong>
-              The urban residence of the Morgan family. Converted in the early 19th c. into the Tredegar Estate Offices, later Bailey & Co.'s Bank (now NatWest).
-            </span>
-          </span>—the imposing stone town mansion of the Morgans of Tredegar. Passing under the shadowy stone portal of the West Gate, Semple stepped abruptly out of the rural approach and directly into the noise and stench of the High Street.
-        </p>
-      </section>
-
-      <div class="sidenote-wrapper">
+        <div class="sidenote-wrapper">
           <p>
             At the foot of the hill, commanding the road where Stow Hill emptied into the head of High Street, stood the ancient fortified 
             <span class="pepys-entry" tabindex="0">
-              <span class="fact-tag">West Gate</span>
+              West Gate
               <span class="pepys-popover">
                 <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Medieval Town Gate</strong>
                 The medieval western stone gatehouse and gaol spanning the roadway between Stow Hill and High Street; demolished c. 1799 to clear traffic.
@@ -649,10 +625,10 @@
             </span>. 
             Surviving until the close of the century, its low stone archway formed the physical threshold of the borough's liberties, with upper chambers that had served generations as the town gaol. To Semple's left stood 
             <span class="pepys-entry" tabindex="0">
-              <span class="fact-tag">The Great House (Plot 42)</span>
+              The Great House (Plot 42)
               <span class="pepys-popover">
                 <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Tredegar Town Mansion</strong>
-                The urban residence of the Morgan family. Converted in the early 19th c. into the Tredegar Estate Offices, later Bailey & Co.'s Bank (now NatWest).
+                The urban residence of the Morgan family. Converted in the early 19th c. into the Tredegar Estate Offices, later Bailey &amp; Co.'s Bank (now NatWest).
               </span>
             </span>—the imposing stone town mansion of the Morgans of Tredegar. Passing under the shadowy stone portal of the West Gate, Semple stepped abruptly out of the rural approach and directly into the noise and stench of the High Street.
           </p>
@@ -660,6 +636,7 @@
             <strong>The West Gate:</strong> Spanned the narrow pinch-point right outside the modern Westgate Hotel. Long before the 1839 Chartist uprising, <a href="https://www.newportpast.com/gallery/maps/1794/index.php" target="_blank">the 1794 map</a> confirms the gatehouse still constricted all coach traffic entering town.
           </div>
         </div>
+      </section>
 
       <!-- ACT III -->
       <section class="space-y-5 sm:space-y-6">
@@ -680,15 +657,15 @@
         <p>
           Semple pushed past the shouting crowds, taking his pack down the street to hawk his wares. He passed the 
           <span class="pepys-entry" tabindex="0">
-            <span class="fact-tag">Fleur de Luce (Plot 36)</span>
+            Fleur de Luce (Plot 36)
             <span class="pepys-popover">
               <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Ye Olde Murenger</strong>
-              Ye Olde Murenger House is a 19th-century pub with a mock Tudor front. It is named after the medieval job of a murenger but it is believe the house of the murenger was further down the street.
+              Ye Olde Murenger House is a 19th-century pub with a mock Tudor front. It is named after the medieval job of a murenger but it is believed the house of the murenger was further down the street.
             </span>
           </span>, 
           and made for 
           <span class="pepys-entry" tabindex="0">
-            <span class="fact-tag">The Red Cow (Plot X)</span>
+            The Red Cow (Plot X)
             <span class="pepys-popover">
               <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">The Greyhound Hotel</strong>
               Licensed alehouse of the Widow Hughes. Nos. 48–49 High Street preserve this modest pre-industrial three-storey scale.
@@ -698,7 +675,7 @@
         </p>
 
         <p>
-          Just up the street at <span class="fact-tag">The King's Head (Plot 108)</span>, the town's premier Tredegar-owned coaching inn was overflowing due to a massive four-day cockfighting tournament between the Gentlemen of Monmouthshire and the Gentlemen of Glamorganshire<a href="#fn-5" id="ref-5" class="fn-ref">5</a>. Thirty-one cocks a side were fighting in the Main for three guineas a battle, with a staggering sixty guineas riding on the deciding match<a href="#fn-5" class="fn-ref">5</a>. For an ordinary working man or labourer earning five or six shillings a week, sixty guineas was a small fortune—more than four years of back-breaking manual labour wagered on the clash of feathered spurs<a href="#fn-5" class="fn-ref">5</a>.
+          Just up the street at <span class="font-sans text-xs bg-parchment-200 px-1 rounded font-mono font-semibold">(Plot 108)</span>, the town's premier Tredegar-owned coaching inn was overflowing due to a massive four-day cockfighting tournament between the Gentlemen of Monmouthshire and the Gentlemen of Glamorganshire<a href="#fn-5" id="ref-5" class="fn-ref">5</a>. Thirty-one cocks a side were fighting in the Main for three guineas a battle, with a staggering sixty guineas riding on the deciding match<a href="#fn-5" class="fn-ref">5</a>. For an ordinary working man or labourer earning five or six shillings a week, sixty guineas was a small fortune—more than four years of back-breaking manual labour wagered on the clash of feathered spurs<a href="#fn-5" class="fn-ref">5</a>.
         </p>
       </section>
 
@@ -737,21 +714,21 @@
         </figcaption>
       </figure>
 
-      <!-- Visual Reconstruction: The King's Head on Market Day -->
-        <figure class="my-10 sm:my-14 -mx-4 sm:-mx-8 md:-mx-16 lg:-mx-28 p-4 sm:p-6 bg-[#f7f3ea] border border-parchment-300 rounded-xl shadow-md transition-all">
-          <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
-            <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Historical Reconstruction • The King’s Head &amp; High Street Market</h3>
-            <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">c. 1750 Landscape</span>
-          </div>
+      <!-- Breakout Figure 2: The King's Head on Market Day (Flush on mobile) -->
+      <figure class="my-8 sm:my-14 -mx-4 sm:-mx-8 md:-mx-16 lg:-mx-28 p-0 sm:p-6 bg-[#f7f3ea] border-y sm:border border-parchment-300 rounded-none sm:rounded-xl shadow-none sm:shadow-md transition-all">
+        <div class="p-4 sm:p-0 sm:mb-3 sm:border-b sm:border-parchment-300 sm:pb-2 flex items-center justify-between">
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Historical Reconstruction • The King’s Head &amp; High Street Market</h3>
+          <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">c. 1750 Landscape</span>
+        </div>
 
-          <div class="overflow-hidden rounded-lg border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Kings-Head-1750.jpg', 'Visual Reconstruction: The King’s Head Hotel on High Street during the June 1750 Cockfight tournament and market day')">
-            <img src="Kings-Head-1750.jpg" alt="1750 reconstruction of The King's Head on High Street with market stalls and cockfight patrons" class="w-full max-h-[580px] object-cover mx-auto group-hover:scale-[1.01] transition-transform duration-200">
-          </div>
+        <div class="overflow-hidden rounded-none sm:rounded-lg border-0 sm:border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Kings-Head-1750.jpg', 'Visual Reconstruction: The King’s Head Hotel on High Street during the June 1750 Cockfight tournament and market day')">
+          <img src="Kings-Head-1750.jpg" alt="1750 reconstruction of The King's Head on High Street with market stalls and cockfight patrons" class="w-full max-h-[580px] object-cover mx-auto group-hover:scale-[1.01] transition-transform duration-200">
+        </div>
 
-          <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
-            <strong class="text-ink font-semibold">Landscape Comparison:</strong> A reconstruction of the top of High Street fronting <strong>Plot 108 (“The King’s Head”)</strong> on market day, June 1750. Outside the classical pedimented inn and stable archway, country wains, tethered livestock, and produce stalls jostle alongside county gentry carrying wicker travelling coops for the high-stakes Monmouthshire versus Glamorganshire cocking match.
-          </figcaption>
-        </figure>
+        <figcaption class="p-4 sm:p-0 sm:mt-3 font-sans text-xs text-ink-muted leading-relaxed">
+          <strong class="text-ink font-semibold">Landscape Comparison:</strong> A reconstruction of the top of High Street fronting <strong>Plot 108 (“The King’s Head”)</strong> on market day, June 1750. Outside the classical pedimented inn and stable archway, country wains, tethered livestock, and produce stalls jostle alongside county gentry carrying wicker travelling coops for the high-stakes Monmouthshire versus Glamorganshire cocking match.
+        </figcaption>
+      </figure>
 
       <!-- ACT IV -->
       <section class="space-y-5 sm:space-y-6">
@@ -813,7 +790,7 @@
         <p>
           Turning sharp left away from the bridge into narrow 
           <span class="pepys-entry" tabindex="0">
-            <span class="fact-tag">Thomas Street</span>
+            Thomas Street
             <span class="pepys-popover">
               <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Birthplace of John Frost</strong>
               The narrow lane skirted the back of High Street plots; the Chartist leader John Frost was born here at the Royal Oak Inn in 1784.
@@ -823,13 +800,13 @@
         </p>
 
         <p>
-          Beyond the mill, the town ended. Passing through the Marshes Gate—the northern borough toll boundary where a checkpoint would later stand—Semple stepped out onto <span class="fact-tag">Marshes Road</span>, following what is now the modern Malpas Road corridor.
+          Beyond the mill, the town ended. Passing through the Marshes Gate—the northern borough toll boundary where a checkpoint would later stand—Semple stepped out onto Marshes Road, following what is now the modern Malpas Road corridor.
         </p>
 
         <p>
           In 1750, this was an unpaved, desolate track cutting across open tidal flats. To his left, the road hugged the natural contour of the land just below the slopes of present-day Brynglas, keeping to firmer ground while the sodden, reed-choked marshes and the winding Malpas Brook lay out to his right. Up ahead, perched safely on a slight rise above the marshline, stood 
           <span class="pepys-entry" tabindex="0">
-            <span class="fact-tag">Crindau House</span>
+            Crindau House
             <span class="pepys-popover">
               <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Circa 1318 Manor</strong>
               Ancient stone manor house preserving 14th-century fabric, historically safe from the tidal surge of the Usk levels.
@@ -855,18 +832,18 @@
           Beyond Crindau, the lower tracks were notoriously boggy, saturated whenever spring tides pushed up the river. Semple took the older, higher alignment of the road, climbing gradually along the bank to avoid having his boots sucked into the clay.
         </p>
 
-        <!-- Visual Reconstruction: Old Malpas Road toward St Mary's Church -->
-        <figure class="my-10 sm:my-14 -mx-4 sm:-mx-8 md:-mx-16 lg:-mx-28 p-4 sm:p-6 bg-[#f7f3ea] border border-parchment-300 rounded-xl shadow-md transition-all">
-          <div class="mb-3 border-b border-parchment-300 pb-2 flex items-center justify-between">
+        <!-- Breakout Figure 3: Old Malpas Road (Flush on mobile) -->
+        <figure class="my-8 sm:my-14 -mx-4 sm:-mx-8 md:-mx-16 lg:-mx-28 p-0 sm:p-6 bg-[#f7f3ea] border-y sm:border border-parchment-300 rounded-none sm:rounded-xl shadow-none sm:shadow-md transition-all">
+          <div class="p-4 sm:p-0 sm:mb-3 sm:border-b sm:border-parchment-300 sm:pb-2 flex items-center justify-between">
             <h3 class="font-display text-xl sm:text-2xl font-bold text-ink">Historical Reconstruction • The Old Malpas Road</h3>
             <span class="font-sans text-[11px] text-ink-muted uppercase tracking-wider hidden sm:inline">c. 1750 Landscape</span>
           </div>
 
-          <div class="overflow-hidden rounded-lg border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Old-Malpas-Road-1750.jpg', 'Visual Reconstruction: The old road between Crindau and Malpas hugging the higher contour above the waterlogged marsh flats, looking toward St Mary’s Church, c. 1750')">
+          <div class="overflow-hidden rounded-none sm:rounded-lg border-0 sm:border border-parchment-300 bg-black/5 cursor-pointer group" onclick="openLightbox('Old-Malpas-Road-1750.jpg', 'Visual Reconstruction: The old road between Crindau and Malpas hugging the higher contour above the waterlogged marsh flats, looking toward St Mary’s Church, c. 1750')">
             <img src="Old-Malpas-Road-1750.jpg" alt="1750 reconstruction of the ancient Malpas Road winding towards St Mary's Church" class="w-full max-h-[580px] object-cover mx-auto group-hover:scale-[1.01] transition-transform duration-200">
           </div>
 
-          <figcaption class="mt-3 font-sans text-xs text-ink-muted leading-relaxed">
+          <figcaption class="p-4 sm:p-0 sm:mt-3 font-sans text-xs text-ink-muted leading-relaxed">
             <strong class="text-ink font-semibold">Landscape Comparison:</strong> An artistic reconstruction depicting the original course of the road between Crindau House and St Mary’s Church. Rather than descending into the boggy tidal flats of the Usk marshes and Malpas Brook, the ancient trackway hugs the rising hillside beneath modern Brynglas, offering a firm, gravelled contour path toward the venerable stone tower of Malpas Church on the horizon.
           </figcaption>
         </figure>
@@ -876,17 +853,17 @@
         </p>
 
         <p>
-          A short distance past the church lay <span class="fact-tag">Malpas House</span>, a quiet gentry seat. Semple continued past the turning to call at the estate’s kitchen quarters, successfully bargaining away his last lengths of ribbon and sewing thread to the domestic maids, before doubling back to the junction. (The Three Horseshoes pub would later serve travellers at this exact crossing).
+          A short distance past the church lay Malpas House, a quiet gentry seat. Semple continued past the turning to call at the estate’s kitchen quarters, successfully bargaining away his last lengths of ribbon and sewing thread to the domestic maids, before doubling back to the junction. (The Three Horseshoes pub would later serve travellers at this exact crossing).
         </p>
 
         <p>
-          Semple turned eastward onto the track known today as <span class="fact-tag">Pilmawr Road</span>. This was ancient ground: an elevated ridgeway alignment dating back to Roman legionary patrols moving between Caerleon and western forts. The road plunged down toward <span class="fact-tag">Park Pill</span> (later called Malpas Pill), a tidal creek off the Usk where small coastal vessels had long been built and repaired, before climbing again along the higher contour above the river loops.
+          Semple turned eastward onto the track known today as Pilmawr Road. This was ancient ground: an elevated ridgeway alignment dating back to Roman legionary patrols moving between Caerleon and western forts. The road plunged down toward Park Pill (later called Malpas Pill), a tidal creek off the Usk where small coastal vessels had long been built and repaired, before climbing again along the higher contour above the river loops.
         </p>
 
         <p>
           As dusk settled, the roofs of Caerleon appeared below. Descending into the ancient borough, Semple bypassed the timber bridge and headed for the warmth of the town's oldest quayside alehouses. Whether bedding down under the timber rafters of the 
           <span class="pepys-entry" tabindex="0">
-            <span class="fact-tag">Hanbury Arms or the Olde Bull</span>
+            Hanbury Arms or the Olde Bull
             <span class="pepys-popover">
               <strong class="block text-vermilion font-semibold mb-0.5 text-xs font-sans uppercase tracking-wider">Historic Riverfront Inns</strong>
               The Olde Bull (advertised by 1730) and the Hanbury Arms (incorporating ancient tower fabric) catered to river pilots, masters, and carters.
@@ -922,7 +899,7 @@
           </div>
         </div>
 
-        <!-- Interactive Pan / Zoom Viewport (Taller & fills the space) -->
+        <!-- Interactive Pan / Zoom Viewport -->
         <div id="map-container" class="map-pan-container overflow-hidden rounded border border-parchment-300 bg-[#e8e2d5] relative h-[560px] sm:h-[680px]">
           <div id="map-target" class="map-zoom-target absolute inset-0 flex items-center justify-center">
             <img id="map-img" src="1750Map.jpg" alt="1750 Newport Map" class="w-auto h-full max-w-none select-none pointer-events-none drop-shadow-md">
@@ -969,7 +946,7 @@
           </button>
         </div>
 
-        <!-- Waypoint Tabs (Responsive Grid / Horizontal Scroll on Mobile) -->
+        <!-- Waypoint Tabs -->
         <div id="waypoint-tabs" class="grid grid-cols-2 sm:grid-cols-5 gap-1.5 sm:gap-2 font-sans text-xs mb-6"></div>
 
         <!-- Waypoint Content Box -->
@@ -1041,7 +1018,7 @@
           <strong>Grammar School Vacancy:</strong> <em>The Gloucester Journal</em>, 15th March, 1748. Notice advertising the Free-School-House, rent-free with adjoining garden. <a href="#ref-3" class="text-vermilion ml-1" title="Back to text">↩</a>
         </li>
         <li id="fn-4" class="pl-1">
-          <strong>Commercial Tenancy &amp; Trade:</strong> <em>The Gloucester Journal</em>, 10th October, 1752. Notice regarding clothier conveniences and fulling-mill premises. <a href="#article-body" class="text-vermilion ml-1" title="Back to text">↩</a>
+          <strong>The Bull at Stow:</strong> <em>The Gloucester Journal</em>, 23rd June, 1841. Notice placed by keeper John Adieu regarding an abandoned, suspected stolen horse left for grass at the Bull at Stow, St Woollos parish (<a href="https://www.newspapers.com/image/970968991/" target="_blank" rel="noopener noreferrer" class="text-vermilion hover:underline">Newspapers.com Archive</a>). <a href="#ref-bull" class="text-vermilion ml-1" title="Back to text">↩</a>
         </li>
         <li id="fn-5" class="pl-1">
           <strong>King's Head Cockfight:</strong> <em>The Gloucester Journal</em>, 12th June, 1750. Notice for the cock-match between the Gentlemen of Monmouthshire and Glamorganshire. <a href="#ref-5" class="text-vermilion ml-1" title="Back to text">↩</a>
@@ -1051,9 +1028,6 @@
         </li>
         <li id="fn-7" class="pl-1">
           <strong>Town Plan &amp; Borough Survey:</strong> <em>Plan of the Town &amp; Borough of Newport</em> (copied from an ancient map c. 1750), preserved in Newport Reference Library and transcribed by <em>Newport Past</em> (ref: m1750_key). <a href="#article-body" class="text-vermilion ml-1" title="Back to text">↩</a>
-        </li>
-        <li id="fn-bull" class="pl-1">
-          <strong>The Bull at Stow:</strong> <em>The Gloucester Journal</em>, 23rd June, 1841. Notice placed by keeper John Adieu regarding an abandoned, suspected stolen horse left for grass at the Bull at Stow, St Woollos parish (<a href="https://www.newspapers.com/image/970968991/" target="_blank" rel="noopener noreferrer" class="text-vermilion hover:underline">Newspapers.com Archive</a>). <a href="#ref-bull" class="text-vermilion ml-1" title="Back to text">↩</a>
         </li>
       </ol>
     </section>
@@ -1201,7 +1175,6 @@
       { no: "112", prop: "??? Duke of Beaufort & Kemeys", note: "Beaufort / Kemeys", sig: "Boundary holding near Castle Green" }
     ];
 
-    // Swapped Waypoint sequence (6 is The Red Cow, 7 is The King's Head)
     const routeWaypoints = [
       {
         id: 1,
@@ -1407,7 +1380,6 @@
       updateMapTransform();
     }
 
-    // Quick Focus Area Presets
     function focusMap(area) {
       if (area === 'town') {
         mapScale = 2.1;
@@ -1433,7 +1405,6 @@
       const container = document.getElementById('map-container');
       if (!container) return;
 
-      // Mouse drag panning
       container.addEventListener('mousedown', (e) => {
         isPanning = true;
         startX = e.clientX - translateX;
@@ -1449,14 +1420,12 @@
 
       window.addEventListener('mouseup', () => { isPanning = false; });
 
-      // Mouse wheel zoom
       container.addEventListener('wheel', (e) => {
         e.preventDefault();
         const delta = e.deltaY < 0 ? 0.25 : -0.25;
         zoomMap(delta);
       }, { passive: false });
 
-      // Touch handling: pan with 1 finger, pinch-zoom with 2 fingers
       let initialPinchDistance = null;
       let initialScale = mapScale;
 
@@ -1496,11 +1465,9 @@
         initialPinchDistance = null;
       });
 
-      // Apply initial town-centre view immediately
       updateMapTransform();
     }
 
-    // Rich Tooltip touch interaction for mobile
     function setupMobilePepys() {
       const entries = document.querySelectorAll('.pepys-entry');
       entries.forEach(entry => {
@@ -1518,7 +1485,6 @@
       });
     }
 
-    // Run setup when DOM is ready
     function init() {
       renderWaypoints();
       renderGazetteerTable();
@@ -1528,15 +1494,6 @@
       const searchInput = document.getElementById('gazetteer-search');
       if (searchInput) {
         searchInput.addEventListener('input', (e) => renderGazetteerTable(e.target.value));
-      }
-
-      const toggleFacts = document.getElementById('toggle-facts-btn');
-      if (toggleFacts) {
-        toggleFacts.addEventListener('click', () => {
-          document.body.classList.toggle('highlight-facts');
-          toggleFacts.classList.toggle('bg-antiqueGold/20');
-          toggleFacts.classList.toggle('border-antiqueGold');
-        });
       }
 
       window.addEventListener('scroll', () => {
